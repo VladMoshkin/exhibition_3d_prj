@@ -35,7 +35,7 @@
 			</li>
 			<li>
 				<div class="text-shelf">
-					<p><a href="enter.html">ВХОД / РЕГИСТРАЦИЯ</a></p>
+					<p><a href="{% 'accounts/register' %}">ВХОД / РЕГИСТРАЦИЯ</a></p>
 				</div>
 			</li>
 			</ul>
@@ -95,28 +95,36 @@
                     
                 } );
                 
+                // Line
+                var line_material = new THREE.LineBasicMaterial( { color: 0x000000, linewidth: 10 } );
+                var geometry = new THREE.Geometry();
+                geometry.vertices.push(new THREE.Vector3( -120, -49, 50) );
+                geometry.vertices.push(new THREE.Vector3( -120, 50, 50) );
+                geometry.vertices.push(new THREE.Vector3( -220, 50, 50) );
+                geometry.vertices.push(new THREE.Vector3( -220, -49, 50) );
+                geometry.vertices.push(new THREE.Vector3( -120, -49, 50) );
+                
+                var line = new THREE.Line( geometry, line_material );
+                scene.add( line );
 			    //Cube geometry
-			    var cube_geometry = new THREE.BoxGeometry( 100, 100, 100 );
-			    /* Load texture
-                cube_texture = new THREE.Texture( );
-                loader = new THREE.ImageLoader( );
+			    var cube_geometry = new THREE.BoxGeometry( 100, 100, 100, 10, 10, 10 );
+			    
+                var texture_right = new THREE.TextureLoader().load( "{% static 'img/right.jpg' %}" );
+                var texture_left = new THREE.TextureLoader().load( "{% static 'img/left.jpg' %}" );
+                var texture_top = new THREE.TextureLoader().load( "{% static 'img/top.jpg' %}" );
+                var texture_bottom = new THREE.TextureLoader().load( "{% static 'img/bottom.jpg' %}" );
+                var texture_front = new THREE.TextureLoader().load( "{% static 'img/back.jpg' %}" );
+                var texture_back = new THREE.TextureLoader().load( "{% static 'img/back.jpg' %}" );
                 
-                loader.addEventListener( 'load', function ( event ){
-                    cube_texture.image = event.content;
-                    cube_texture.needsUpdate = true;
-                });
-                
-                loader.load("{% static 'img/front.jpg' %}");
-                */
                 var cubeMaterials = 
 				[
-					new THREE.MeshPhongMaterial( { color: 0x4286f4, side: THREE.DoubleSide } ), //right
-					new THREE.MeshPhongMaterial( { color: 0x302c35, side: THREE.DoubleSide } ), //left
-					new THREE.MeshPhongMaterial( { color: 0xedde93, side: THREE.DoubleSide } ), //top
-					new THREE.MeshPhongMaterial( { color: 0xd3716b, side: THREE.DoubleSide } ), //bottom
-					new THREE.MeshPhongMaterial( { color: 0x000ff0, side: THREE.BackSide } ), //front
-					new THREE.MeshPhongMaterial( { color: 0x542ed1, side: THREE.DoubleSide } ) //back
-					//new THREE.MeshBasicMaterial( { map: cube_texture, side: THREE.DoubleSide } )
+					new THREE.MeshPhongMaterial( { map: texture_right, side: THREE.DoubleSide } ), //right
+					new THREE.MeshPhongMaterial( { map: texture_left, side: THREE.DoubleSide } ), //left
+					new THREE.MeshPhongMaterial( { map: texture_top, side: THREE.DoubleSide } ), //top
+					new THREE.MeshPhongMaterial( { map: texture_bottom, side: THREE.DoubleSide } ), //bottom
+					new THREE.MeshPhongMaterial( { map: texture_front, side: THREE.BackSide } ), //front
+					new THREE.MeshPhongMaterial( { map: texture_back, side: THREE.DoubleSide } ) //back
+                    //new THREE.MeshPhongMaterial( { color: 0x542ed1, side: THREE.DoubleSide } ) 
 				];
 			    var cube_material = new THREE.MeshFaceMaterial( cubeMaterials );
 			    var cube = new THREE.Mesh( cube_geometry, cube_material );
@@ -145,17 +153,8 @@
                 var ambientLight = new THREE.AmbientLight( 0xFFFFFF, 1 );
                 scene.add( ambientLight );
                 
-                /* Line
-                var line_material = new THREE.LineBasicMaterial( { color: 0x000000 } );
-                var line_geometry = new THREE.Geometry();
-                geometry.vertices.push(new THREE.Vector3( -120, -49, 50) );
-                geometry.vertices.push(new THREE.Vector3( -120, 50, 50) );
-                geometry.vertices.push(new THREE.Vector3( -220, 50, 50) );
-                geometry.vertices.push(new THREE.Vector3( -220, -49, 50) );
-                geometry.vertices.push(new THREE.Vector3( -120, -49, 50) );
-                var line = new THREE.Line( line_geometry, line_material );
-                scene.add( line );
-                */
+                
+                
                 
                 renderer = new THREE.WebGLRenderer();
                 renderer.setSize( window.innerWidth, window.innerHeight );
