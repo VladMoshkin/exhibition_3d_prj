@@ -8,7 +8,7 @@ from exhibition import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('exhibition.urls')),
-    url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^account/', include('accounts.urls')),
 
 ]
 

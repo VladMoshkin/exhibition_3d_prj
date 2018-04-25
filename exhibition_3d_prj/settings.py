@@ -16,6 +16,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STAT_DIR = os.path.join(BASE_DIR, "static")
+STAT_ROOT = ''
 MEDI_DIR = os.path.join(BASE_DIR, "media")
 TEMPL_DIR = os.path.join(BASE_DIR, "templates")
 
@@ -43,7 +44,7 @@ INSTALLED_APPS = [
     'blog',
     'news',
     'exhibition',
-    'registration',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -127,7 +128,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (STAT_DIR,)
-STATIC_ROOT = STAT_DIR
+STATIC_ROOT = STAT_ROOT
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = MEDI_DIR
+
+LOGIN_REDIRECT_URL = '/account/'
