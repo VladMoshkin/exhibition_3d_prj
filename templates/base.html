@@ -37,8 +37,8 @@
 				<li>
 					<div class="text-shelf">
 						{% block menu %}
-						<p><a href="enter.html">ВХОД / РЕГИСТРАЦИЯ</a></p>
 						{% endblock %}
+						<p><a href="{% url 'auth_login' %}">ВХОД / РЕГИСТРАЦИЯ</a></p>
 					</div>
 				</li>
 				</ul>
