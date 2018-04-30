@@ -1,0 +1,13 @@
+<svg width="31" height="31" viewBox="0 0 31 31" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Canvas" fill="none">
+<g id="Search">
+<g id="Ellipse">
+<circle cx="12" cy="12" r="11" stroke-width="2" stroke="black"/>
+</g>
+<g id="Line">
+<path d="M 0 0L 14.1421 0" stroke-width="2" transform="matrix(-0.707107 -0.707107 0.707107 -0.707107 30 30)" stroke="black"/>
+</g>
+</g>
+</g>
+</svg>
+

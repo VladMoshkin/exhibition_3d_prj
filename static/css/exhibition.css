@@ -1,0 +1,135 @@
+@font-face{
+	font-family: 'Univers';
+  	font-style: normal;
+  	font-weight: normal;
+  	src: local('Univers_normal'),
+    	url('/fonts/Univers_normal.ttf') format('ttf');
+}
+@font-face{
+	font-family: 'Univers Condensed';
+  	font-style: normal;
+  	font-weight: normal;
+  	src: local('Univers_condensed'),
+    	url('/fonts/Univers_condensed.ttf') format('ttf');
+}
+@font-face{
+	font-family: 'Univers Condensed';
+  	font-style: normal;
+  	font-weight: bold;
+  	src: local('Univers_condensed_bold'),
+    	url('/fonts/Univers_condensed_bold.ttf') format('ttf');
+}
+#top {
+	height: 36px;
+	position: absolute;
+	top: 30px;
+	margin-bottom: 10px;
+	margin-left: 40px;
+	margin-right: 40px;
+	margin-top: 10px;
+	width: calc(100% - 80px);
+	z-index: 2;
+}
+#top #top-left {
+	float: left;
+}
+#top #top-right {
+  float: right;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+#top #top-right li {
+  list-style-type: none;
+	float: right;
+  margin: 0px 5px;
+}
+#ui {
+	height: 36px;
+	position: absolute;
+	bottom: 30px;
+	margin-bottom: 10px;
+	margin-left: 40px;
+	margin-right: 40px;
+	margin-top: 10px;
+	width: calc(100% - 80px);
+}
+#ui #ui-left {
+	float: left;
+}
+
+#ui #ui-right {
+  float: right;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+#ui #ui-right li {
+  list-style-type: none;
+	float: right;
+  margin: 0px 5px;
+}
+#logo {
+	position:absolute;
+	height: 100px;
+	width: 100px;
+	top: 10px;
+	left: 50%;
+	transform: translate(-50%);
+	margin: 10px;
+	z-index: 2;
+ 	display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body{
+	font-family: 'Univers Condensed';
+}
+
+.enter_content{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	height: calc(100% - 160px);
+	width: calc(100% - 80px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+h1{
+	font-family: 'Univers Condensed';
+	font-weight: bold;
+	font-size: 24pt;
+}
+.enter_forms{
+	width: 480px;
+	margin: 80px;
+	font-size: 18pt;
+	font-family: 'Univers';
+	font-weight: normal;
+}
+
+.shelf{
+	height: 36px;
+	width: 36px;
+	display: flex;
+	justify-content: center;
+  align-items: center;
+}
+.text-shelf{
+	height: 36px;
+	width: 300px;
+	display: flex;
+  justify-content: center;
+  align-items: center;
+	font-weight: bold;
+	font-size: 24pt;
+
+}
+A {
+	text-decoration: none;
+	color: black;
+}
+A:hover {
+     text-decoration: none;
+}
