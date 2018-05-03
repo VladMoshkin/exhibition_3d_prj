@@ -94,6 +94,8 @@
 		</script>
 
 		<script src="{% static 'js/three.js' %}"></script>
+		<script src="{% static 'js/OrbitControls.js' %}"></script>
+
 		<script>
 
             var camera, scene, renderer;
@@ -104,9 +106,9 @@
 
 
             function init( ){
-                camera = new THREE.PerspectiveCamera( 60, window.innerWidth/window.innerHeight, 0.1, 1000 );
-                camera.position.set(0, 0, 410);
-			    			camera.setFocalLength ( 25 );
+                camera = new THREE.PerspectiveCamera( 60, window.innerWidth/window.innerHeight, 0.01, 1000 );
+                camera.position.set( 0, 0, 625 );
+			    			camera.setFocalLength ( 40 );
                 scene = new THREE.Scene();
                 scene.background = new THREE.Color(0xffffff);
 
@@ -114,7 +116,6 @@
                     renderer.setSize( window.innerWidth, window.innerHeight );
                     camera.aspect = window.innerWidth / window.innerHeight;
                     camera.updateProjectionMatrix( );
-
                 } );
 
 									var h = 49.5;
@@ -158,8 +159,9 @@
 
 								scene.add( lineSegments );
 								lineSegments.position.set(-175, 0, 0);
+
 					//Cube geometry
-			    			var cube_geometry = new THREE.BoxGeometry( 100, 100, 100, 10, 10, 10 );
+			    			var cube_geometry = new THREE.BoxGeometry( 100, 100, 100 );
 
                 var texture_right = new THREE.TextureLoader().load( "{% static 'img/right.jpg' %}" );
                 var texture_left = new THREE.TextureLoader().load( "{% static 'img/left.jpg' %}" );
@@ -170,55 +172,95 @@
 
           			var cubeMaterials =
 				[
-								new THREE.MeshPhongMaterial( { map: texture_right, side: THREE.DoubleSide } ), //right
-								new THREE.MeshPhongMaterial( { map: texture_left, side: THREE.DoubleSide } ), //left
-								new THREE.MeshPhongMaterial( { map: texture_top, side: THREE.DoubleSide } ), //top
-								new THREE.MeshPhongMaterial( { map: texture_bottom, side: THREE.DoubleSide } ), //bottom
+								new THREE.MeshPhongMaterial( { map: texture_right, side: THREE.BackSide } ), //right
+								new THREE.MeshPhongMaterial( { map: texture_left, side: THREE.BackSide } ), //left
+								new THREE.MeshPhongMaterial( { map: texture_top, side: THREE.BackSide } ), //top
+								new THREE.MeshPhongMaterial( { map: texture_bottom, side: THREE.BackSide } ), //bottom
 								new THREE.MeshPhongMaterial( { map: texture_front, side: THREE.BackSide } ), //front
-								new THREE.MeshPhongMaterial( { map: texture_back, side: THREE.DoubleSide } ) //back
-                    //new THREE.MeshPhongMaterial( { color: 0x542ed1, side: THREE.DoubleSide } )
+								new THREE.MeshPhongMaterial( { map: texture_back, side: THREE.BackSide } ) //back
 				];
 			    var cube_material = new THREE.MeshFaceMaterial( cubeMaterials );
 			    var cube = new THREE.Mesh( cube_geometry, cube_material );
-                scene.add( cube );
+          scene.add( cube );
 
-                //Plane hor
-                var geometry = new THREE.PlaneGeometry( 1000, 1000 );
-                var material = new THREE.MeshPhongMaterial(  );
-                var plane = new THREE.Mesh( geometry, material );
-                //plane.castShadow = true;
-                plane.receiveShadow = true;
-                scene.add( plane );
-                plane.position.set(0, -50.1, 0);
-                plane.rotation.x = -Math.PI / 2;
+					var cube_geometry_2 = new THREE.BoxGeometry( 100.2, 100.2, 100.2 );
+					var cubeBlackMaterials =
+					[
+						new THREE.MeshPhongMaterial( { color: 0x000000, side: THREE.FrontSide } ),
+						new THREE.MeshPhongMaterial( { color: 0x000000, side: THREE.FrontSide } ),
+						new THREE.MeshPhongMaterial( { color: 0x000000, side: THREE.FrontSide } ),
+						new THREE.MeshPhongMaterial( { color: 0x000000, side: THREE.FrontSide } ),
+						new THREE.MeshPhongMaterial( { color: 0x000000, side: THREE.BackSide } ),
+						new THREE.MeshPhongMaterial( { color: 0x000000, side: THREE.FrontSide } )
+					];
 
-                //Plane vert
-                var geometry = new THREE.PlaneGeometry( 1000, 400 );
-                var material = new THREE.MeshPhongMaterial( );
-                var plane = new THREE.Mesh( geometry, material );
-                //plane.castShadow = true;
-                plane.receiveShadow = true;
-                scene.add( plane );
-                plane.position.set(0, 150, -250);
-
-                //Light
-                var ambientLight = new THREE.AmbientLight( 0xFFFFFF, 1 );
-                scene.add( ambientLight );
+					var cube_black_material = new THREE.MeshFaceMaterial( cubeBlackMaterials );
+					var cube_black = new THREE.Mesh( cube_geometry_2, cube_black_material );
+					scene.add( cube_black );
 
 
+					//Cube geometry 2
+					var texture_right = new THREE.TextureLoader().load( "{% static 'img/right.jpg' %}" );
+					var texture_left = new THREE.TextureLoader().load( "{% static 'img/left.jpg' %}" );
+					var texture_top = new THREE.TextureLoader().load( "{% static 'img/top.jpg' %}" );
+					var texture_bottom = new THREE.TextureLoader().load( "{% static 'img/bottom.jpg' %}" );
+					var texture_front = new THREE.TextureLoader().load( "{% static 'img/back.jpg' %}" );
+					var texture_back = new THREE.TextureLoader().load( "{% static 'img/back.jpg' %}" );
 
+					var cubeMaterials_2 =
+	[
+					new THREE.MeshPhongMaterial( { map: texture_right, side: THREE.BackSide } ), //right
+					new THREE.MeshPhongMaterial( { map: texture_left, side: THREE.BackSide } ), //left
+					new THREE.MeshPhongMaterial( { map: texture_top, side: THREE.BackSide } ), //top
+					new THREE.MeshPhongMaterial( { map: texture_bottom, side: THREE.BackSide } ), //bottom
+					new THREE.MeshPhongMaterial( { map: texture_front, side: THREE.BackSide } ), //front
+					new THREE.MeshPhongMaterial( { map: texture_back, side: THREE.BackSide } ) //back
 
-                renderer = new THREE.WebGLRenderer();
-                renderer.setSize( window.innerWidth, window.innerHeight );
-                renderer.shadowMap.enabled = true;
-			    			renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-                document.body.appendChild( renderer.domElement );
-            }
+	];
+					var cube_material_2 = new THREE.MeshFaceMaterial( cubeMaterials_2 );
+				  var cube_2 = new THREE.Mesh( cube_geometry, cube_material_2 );
+					scene.add( cube_2 );
+					cube.position.set(175, 0, 0);
+
+					var cube_black_2 = new THREE.Mesh( cube_geometry_2, cube_black_material );
+					scene.add( cube_black_2 );
+					cube_black_2.position.set( 175, 0, 0 );
+
+					//Plane hor
+					var shadowtex = new THREE.TextureLoader().load( "{% static 'img/shadowtex.jpg' %}" );
+					var planeMaterials = new THREE.MeshBasicMaterial( { map: shadowtex, side: THREE.DoubleSide } );
+          var geometry = new THREE.PlaneGeometry( 1300, 500 );
+          var plane = new THREE.Mesh( geometry, planeMaterials );
+          scene.add( plane );
+          plane.position.set(350, -50.2, 0);
+          plane.rotation.x = -Math.PI / 2;
+
+          //line hor
+					var geometry = new THREE.Geometry();
+					geometry.vertices.push(
+						new THREE.Vector3( -400, -40, -250 ),
+						new THREE.Vector3( 1200,-40, -250 )
+					);
+					var line = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: 0x000000, linewidth: 2 } ) );
+					scene.add(line);
+            //Light
+            var ambientLight = new THREE.AmbientLight( 0xFFFFFF, 1 );
+            scene.add( ambientLight );
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize( window.innerWidth, window.innerHeight );
+            renderer.shadowMap.enabled = true;
+			    	renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            document.body.appendChild( renderer.domElement );
+
+						// controls
+						controls = new THREE.OrbitControls( camera, renderer.domElement );
+      }
 
 
             function animation( ){
                 requestAnimationFrame( animation );
-
+								controls.update()
                 renderer.render( scene, camera );
             }
 
