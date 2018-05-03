@@ -1,0 +1,24 @@
+{% extends "registration/registration_base.html" %}
+{% load staticfiles i18n %}
+{% block title %}{% trans "Log in" %} |{% endblock %}
+{% block register %}
+<form method="post" action="">
+	{% csrf_token %}
+        {% for field in form %}
+        <div>
+            {{ field.errors }}
+            <div>{{ field.label_tag }} {{ field }}</div>
+            {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    <div>
+        <input type="submit" value="{% trans "Log in" %}"/>
+    </div>
+	<div>
+		<p>{% trans "Forgot your password?" %} <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a></p>
+		<p>{% trans "Not a member?" %} <a href="{% url 'registration_register' %}">{% trans "Register" %}</a></p>
+	</div>
+</form>
+{% endblock %}

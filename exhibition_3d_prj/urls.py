@@ -15,7 +15,6 @@ urlpatterns = [
     url(r'^api/submit/$', views.submit, name="submit"),
     url(r'^api/change/user/$', views.change_user, name="change_user"),
     url(r'^api/change/user-info/$', views.change_userinfo, name="change_userinfo"),
-    url(r'^excel/(?P<stimulus_id>\d+)/$', views.result, name="result"),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

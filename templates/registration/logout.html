@@ -1,0 +1,11 @@
+{% extends "registration/registration_base.html" %}
+{% load staticfiles i18n %}
+{% block title %}{% trans "Logged out" %} |{% endblock %}
+{% block register %}
+<div class="card-content blue-grey-text">
+	<p class="text-center">{% trans "Successfully logged out" %}.</p>
+</div>
+<div class="card-action">
+	<a href="{% url 'index' %}">{% trans "Return to home page." %}</a>
+</div>
+{% endblock %}

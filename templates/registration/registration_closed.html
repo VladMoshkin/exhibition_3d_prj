@@ -1,0 +1,13 @@
+{% extends "registration/registration_base.html" %}
+{% load staticfiles i18n %}
+{% block title %}{% trans "Registration is closed" %}{% endblock %}
+
+{% block register %}
+<div class="card-content blue-grey-text">
+	<span class="card-title">{% trans "Registration is closed" %}</span>
+	<p>{% trans "Просим прощения, регистрация в данный момент закрыта." %}</p>
+</div>
+<div class="card-action">
+	<a href="{% url 'index' %}">{% trans "Return to home page." %}</a>
+</div>
+{% endblock %}

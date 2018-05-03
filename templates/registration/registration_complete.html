@@ -1,0 +1,12 @@
+{% extends "registration/registration_base.html" %}
+{% load staticfiles i18n %}
+{% block title %}{% trans "Activation email sent" %} |{% endblock %}
+{% block register %}
+<div class="card-content blue-grey-text">
+	<span class="card-title">{% trans "Activation email sent" %}</span>
+	<p>{% trans "Please check your email to complete the registration process." %}</p>
+</div>
+<div class="card-action">
+	<a href="{% url 'index' %}">{% trans "Return to home page." %}</a>
+</div>
+{% endblock %}
