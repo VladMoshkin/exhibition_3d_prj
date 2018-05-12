@@ -8,7 +8,7 @@ from accounts import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'', include('exhibition.urls')),
+    url(r'^exhibition/', include('exhibition.urls')),
     url(r'^account/', include('registration.backends.simple.urls')),
     url(r'^logout/$', views.logout_user, name="logout"),
     url(r'^profile/$', views.profile, name="profile"),
