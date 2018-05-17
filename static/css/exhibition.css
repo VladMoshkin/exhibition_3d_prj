@@ -19,6 +19,13 @@
   	src: local('Univers_condensed_bold'),
     	url('/fonts/Univers_condensed_bold.ttf') format('ttf');
 }
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
 #top {
 	height: 36px;
 	position: absolute;
@@ -82,7 +89,11 @@
 }
 body{
 	font-family: 'Univers Condensed';
+	overflow: hidden;
+	min-height: 100vh;
 }
+
+
 
 .enter_content{
 	position: absolute;
@@ -101,14 +112,20 @@ h1{
 	font-weight: bold;
 	font-size: 24pt;
 }
-.enter_forms{
+.login_area{
 	width: 480px;
 	margin: 80px;
 	font-size: 18pt;
 	font-family: 'Univers';
 	font-weight: normal;
 }
-
+.registration_area{
+	width: 480px;
+	margin: 80px;
+	font-size: 18pt;
+	font-family: 'Univers';
+	font-weight: normal;
+}
 .shelf{
 	height: 36px;
 	width: 36px;

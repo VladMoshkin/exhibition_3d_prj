@@ -2,21 +2,23 @@
 {% load staticfiles i18n %}
 {% block title %}{% trans "Register for an account" %} |{% endblock %}
 {% block register %}
-<form method="post" action="">
-	{% csrf_token %}
-	<div class="card-content blue-grey-text">
-		<span class="card-title">{% trans "Register for an account" %}</span>
-		{% for field in form %}
-		<div class="row">
-			<div class="input-field col s12">
-				{{field}}
-				<label data-error="wrong" data-success="right" for="{{field.id_for_label }}">{{field.label}}</label>
-				{% if field.help_text %}<p class="red-text">{{ field.help_text|safe }}</p>{% endif %}
-				{{ field.errors }}
+<div class="enter_form">
+	<form method="post" action="">
+		{% csrf_token %}
+		<div class="card-content blue-grey-text">
+			<span class="card-title">{% trans "Register for an account" %}</span>
+			{% for field in form %}
+			<div class="row">
+				<div class="input-field col s12">
+					{{field}}
+					<label data-error="wrong" data-success="right" for="{{field.id_for_label }}">{{field.label}}</label>
+					{% if field.help_text %}<p class="red-text">{{ field.help_text|safe }}</p>{% endif %}
+					{{ field.errors }}
+				</div>
 			</div>
+			{% endfor %}
+			<input class="btn waves-effect waves-light" type="submit" value="{% trans 'Submit' %}" />
 		</div>
-		{% endfor %}
-		<input class="btn waves-effect waves-light" type="submit" value="{% trans 'Submit' %}" />
-	</div>
-</form>
+	</form>
+</div>
 {% endblock %}

@@ -2,23 +2,48 @@
 {% load staticfiles i18n %}
 {% block title %}{% trans "Log in" %} |{% endblock %}
 {% block register %}
-<form method="post" action="">
-	{% csrf_token %}
-        {% for field in form %}
-        <div>
-            {{ field.errors }}
-            <div>{{ field.label_tag }} {{ field }}</div>
-            {% if field.help_text %}
-                <p class="help">{{ field.help_text|safe }}</p>
-            {% endif %}
-        </div>
-        {% endfor %}
-    <div>
-        <input type="submit" value="{% trans "Log in" %}"/>
-    </div>
-	<div>
-		<p>{% trans "Forgot your password?" %} <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a></p>
-		<p>{% trans "Not a member?" %} <a href="{% url 'registration_register' %}">{% trans "Register" %}</a></p>
-	</div>
-</form>
+<div class="login_area">
+	<form method="POST" action="{% url 'auth_login' %}">
+		{% csrf_token %}
+	    <div>
+				<label for="id_login_username">Имя пользователя</label>
+				<input type="text" name="username" autofocus maxlength="254" required id="id_login_username">
+			</div>
+			<div>
+				<label for="id_login_password">Пароль</label>
+				<input type="password" name="password" required id="id_login_password">
+			</div>
+	    <div>
+	        <input type="submit" value="{% trans "ВОЙТИ" %}"/>
+	    </div>
+		<div>
+			<p>{% trans "Забыли пароль?" %} <a href="{% url 'auth_password_reset' %}">{% trans "Восстановить" %}</a></p>
+		</div>
+	</form>
+</div>
+
+<div class="registration_area">
+	<form method="POST" action="{% url 'registration_register' %}">
+		{% csrf_token %}
+		<div>
+			<span class="card-title">{% trans "РЕГИСТРАЦИЯ" %}</span>
+		</div>
+
+		<div>
+			<label for="id_registration_username">Имя пользователя</label>
+			<input type="text" name="username" maxlength="254" required id="id_registration_username">
+		</div>
+		<div>
+			<label for="id_registration_email">E-mail</label>
+			<input type="email" name="email" required id="id_registration_email">
+		</div>
+		<div>
+			<label for="id_registration_password">Пароль</label>
+			<input type="password" name="password" required id="id_registration_password">
+		</div>
+		<div>
+			<input class="btn_auth" type="submit" value="{% trans "ЗАРЕГИСТРИРОВАТЬСЯ" %}" />
+		</div>
+	</form>
+</div>
 {% endblock %}

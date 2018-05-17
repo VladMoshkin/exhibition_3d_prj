@@ -4,96 +4,40 @@
 	<head>
 		<meta charset=utf-8>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="{% static 'css/exhibition.css' %}">
+		<link rel="stylesheet" href="{% static 'css/exhibition.css' %}?v=0.0.3">
 
 		<title>{% block title %}{% endblock %}</title>
 
-    <style>
+		<style>
 			body { margin: 0; }
-			canvas { width: 100%; height: 100%; };
+			canvas { width: 100%; height: 100%; }
+			#cursor {
+				display: block;
+				position: absolute;
+				width:10px;
+				height: 10px;
+				background-color: black;
+				transform: translate(50px, 50px);
+			}
 		</style>
   </head>
 
   <body>
+		<!--<div id ="cursor" class="cursor"></div>-->
+		<script>
+		var theThing = document.querySelector("#cursor");
+		function readMouseMove(e){
+			var xPosition = e.clientX - (theThing.offsetWidth / 2);
+			var yPosition = e.clientY - (theThing.offsetHeight / 2);
+			console.log( [e.clientX, e.clientY] );
 
-		<div id="logo">
-			<img src="{% static 'img/Logo.svg' %}" alt="Logo"/>
-		</div>
-		<top ui>
-		<div id="top">
-			<div id="top-left">
-			<div class="shelf">
-					<img src="{% static 'img/menudesktop.svg' %}" alt="Menu"/>
-				</div>
-			</div>
-			<ul id="top-right">
-				<li>
-				<div class="shelf">
-				{% block ico_rigth_top %}
-				<img src="{% static 'img/Search.svg' %}" alt="Search"/>
-				{% endblock %}
-				</div>
-			</li>
-			<li>
-				<div class="text-shelf">
-					{% block menu %}
-					{% endblock %}
-					<p><a href="{% url 'auth_login' %}">ВХОД / РЕГИСТРАЦИЯ</a></p>
-				</div>
-			</li>
-			</ul>
-		</div>
-		</top>
-		<bottom ui>
-		<div id="ui">
-			<div id="ui-left">
-				<div class="shelf">
-					<img src="{% static 'img/Sound.svg' %}" alt="Sound"/>
-				</div>
-			</div>
-			<ul id="ui-right">
-				<li>
-				<div class="shelf">
-				<img src="{% static 'img/twitter.svg' %}" alt="Twitter"/>
-				</div>
-			</li>
-			<li>
-				<div class="shelf">
-				<img src="{% static 'img/facebook.svg' %}" alt="Facebook"/>
-				</div>
-			</li>
-			<li>
-				<div class="shelf">
-				<img src="{% static 'img/instagram.svg' %}" alt="Instagram"/>
-				</div>
-			</li>
-			<li>
-				<div class="shelf">
-				<img src="{% static 'img/vk.svg' %}" alt="Vk"/>
-				</div>
-			</li>
-			</ul>
-		</div>
-		</bottom>
-	<div class="enter_content">
-		<div class="enter_forms">
-		<header>
-		{% if user.is_authenticated %}
-		<h1>{% block head %}{% endblock %}</h1>
-		{% else %}
-   		<h1>ВХОД</h1>
-		{% endif %}
-    <!--    <p>
-        <a class="profile-link" href="{% url 'profile' %}">Профиль</a>
-        <a href="{% url 'logout' %}">ВЫХОД <i class="fa fa-sign-out" aria-hidden="true"></i></a></p>
-		-->
-		</header>
-    <main>
-      {% block main %}{% endblock %}
-    </main>
-	</div>
-	<div class="enter_forms">
-	</div>
-	</div>
+			var translateValue = "translate(" + xPosition + "px," + yPosition + "px)";
+			theThing.style.transform = translateValue;
+		}
+		//document.onmousemove = readMouseMove;
+		</script>
+
+		{% block ui %}{% endblock %}
+		{% block content %}{% endblock %}
 	</body>
 </html>
