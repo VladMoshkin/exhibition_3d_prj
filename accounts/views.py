@@ -16,14 +16,7 @@ def logout_user(request):
 def profile(request):
     template = "pages/profile.html"
     user = request.user
-    u_form = UserForm(instance=user)
-    ui, ui_created = UserInfo.objects.get_or_create(
-            user=user,
-            )
-    ui_form = UserInfoForm(instance=ui)
     var = {
-            'u_form':u_form,
-            'ui_form':ui_form,
             }
     return render(request, template, var)
 

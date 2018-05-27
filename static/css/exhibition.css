@@ -10,14 +10,14 @@
   	font-style: normal;
   	font-weight: normal;
   	src: local('Univers_condensed'),
-    	url('/fonts/Univers_condensed.ttf') format('ttf');
+    url('/fonts/Univers_condensed.ttf') format('ttf');
 }
 @font-face{
 	font-family: 'Univers Condensed';
   	font-style: normal;
   	font-weight: bold;
   	src: local('Univers_condensed_bold'),
-    	url('/fonts/Univers_condensed_bold.ttf') format('ttf');
+    url('/fonts/Univers_condensed_bold.ttf') format('ttf');
 }
 
 *{
@@ -26,74 +26,190 @@
 	box-sizing: border-box;
 }
 
-#top {
-	height: 36px;
-	position: absolute;
-	top: 30px;
-	margin-bottom: 10px;
-	margin-left: 40px;
-	margin-right: 40px;
-	margin-top: 10px;
-	width: calc(100% - 80px);
-	z-index: 2;
-}
-#top #top-left {
-	float: left;
-}
-#top #top-right {
-  float: right;
-	margin-top: 0px;
-	margin-bottom: 0px;
-}
-#top #top-right li {
-  list-style-type: none;
-	float: right;
-  margin: 0px 5px;
-}
-#ui {
-	height: 36px;
-	position: absolute;
-	bottom: 30px;
-	margin-bottom: 10px;
-	margin-left: 40px;
-	margin-right: 40px;
-	margin-top: 10px;
-	width: calc(100% - 80px);
-}
-#ui #ui-left {
-	float: left;
-}
-
-#ui #ui-right {
-  float: right;
-	margin-top: 0px;
-	margin-bottom: 0px;
-}
-#ui #ui-right li {
-  list-style-type: none;
-	float: right;
-  margin: 0px 5px;
-}
-#logo {
-	position:absolute;
-	height: 100px;
-	width: 100px;
-	top: 15px;
-	left: 50%;
-	transform: translate(-50%);
-	margin: 10px;
-	z-index: 2;
- 	display: flex;
-  justify-content: center;
-  align-items: center;
-}
 body{
-	font-family: 'Univers Condensed';
-	overflow: hidden;
+	display: flex;
+	flex-direction: column;
 	min-height: 100vh;
 }
 
+body>main{
+	min-height: 100vh;
+}
 
+body>header,
+body>footer{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px;
+	position: fixed;
+	width: 100vw;
+	z-index: 999;
+}
+
+body>header{
+	top: 0;
+	left: 0;
+}
+
+body>footer{
+	bottom: 0;
+	left: 0;
+}
+
+body>footer>section:last-child,
+body>footer>section:last-child a{
+	display: flex;
+	align-items: center;
+}
+
+body>footer>section:last-child a{
+	margin-right: 8px;
+}
+
+body>footer>section:last-child a:last-child{
+	margin-right: 0;
+}
+
+body>header>section:first-child,
+body>header>section:last-child{
+	flex-grow: 1;
+	width: 100%;
+}
+
+body>header .logo{
+	min-width: 65px;
+}
+
+body>header .menu svg{
+	height: 30px;
+}
+
+body>header .auth{
+	text-align: right;
+
+}
+
+.single_post>main{
+	min-height: 200vh;
+	padding-top: 50vh;
+	padding-left: 50vw;
+}
+
+.single_post>header{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	background-position: top;
+	background-size: cover;
+	height: 50vh;
+	transition: all 0.1s ease-out 0s;
+	position: fixed;
+	top: 0;
+	left:0;
+	width: 100vw;
+}
+
+.single_post>header h1{
+	margin-bottom: -50px;
+	width: 49vw;
+}
+
+#sidebar{
+	width: 100%;
+	height: 100%;
+	display: block;
+	position: fixed;
+	left: -100%;
+	top: 0px;
+	background-color: white;
+	z-index: 1;
+	transition: left 0.7s ease;
+}
+#sidebar.visible{
+	left: 0px;
+}
+
+#sidebar ul{
+	text-transform: uppercase;
+	margin: 120px 0px 0px 240px;
+}
+
+#sidebar li{
+	margin-bottom: 60px;
+}
+
+#menu-btn{
+		cursor: pointer;
+}
+
+#a_menu{
+	font-size: 72px;
+}
+
+body{
+	font-family: 'Univers Condensed';
+}
+
+h1{
+	font-weight: bold;
+	font-size: 24pt;
+	text-transform: uppercase;
+}
+
+h2{
+	font-size: 18pt;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+
+ul{
+	list-style-type: none;
+}
+
+A {
+	text-decoration: none;
+	color: black;
+	font-family: 'Univers Condensed';
+	font-weight: bold;
+	font-size: 24pt;
+}
+A:hover {
+  text-decoration: none;
+}
+
+.list{
+	display: grid;
+	grid-template-columns: repeat(3, 272px);
+	grid-row-gap: 120px;
+	justify-content: space-between;
+	margin-top: 120px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	max-width: 1232px;
+}
+.post{
+	min-height: 360px;
+	display: flex;
+	flex-direction: column;
+}
+.post>main{
+	display: flex;
+	flex-direction: column;
+
+}
+.post>main>h2{
+	flex-grow: 1;
+}
+.post>header{
+	background-position: center;
+	background-size: cover;
+}
+.post>header>div{
+	display: block;
+	padding-top: 100%;
+}
 
 .enter_content{
 	position: absolute;
@@ -107,11 +223,7 @@ body{
 	align-items: center;
 
 }
-h1{
-	font-family: 'Univers Condensed';
-	font-weight: bold;
-	font-size: 24pt;
-}
+
 .login_area{
 	width: 480px;
 	margin: 80px;
@@ -132,21 +244,4 @@ h1{
 	display: flex;
 	justify-content: center;
   align-items: center;
-}
-.text-shelf{
-	height: 36px;
-	width: 300px;
-	display: flex;
-  justify-content: center;
-  align-items: center;
-	font-weight: bold;
-	font-size: 24pt;
-
-}
-A {
-	text-decoration: none;
-	color: black;
-}
-A:hover {
-     text-decoration: none;
 }

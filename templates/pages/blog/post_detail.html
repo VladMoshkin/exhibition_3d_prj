@@ -1,0 +1,105 @@
+{% extends "base/base.html" %}
+{% load staticfiles i18n %}
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block ui %}
+		<div id="logo">
+			<img src="{% static 'img/Logo.svg' %}" alt="Logo"/>
+		</div>
+		<top ui>
+		<div id="top">
+			<div id="top-left">
+			<div class="shelf">
+					<img id="menu-btn" src="{% static 'img/menudesktop.svg' %}" alt="Menu"/>
+				</div>
+			</div>
+			<ul id="top-right">
+	    	<li>
+				<div class="shelf">
+				<img src="{% static 'img/Search.svg' %}" alt="Search"/>
+				</div>
+			</li>
+			<li>
+				<div class="text-shelf">
+					<p><a href="{% url 'auth_login' %}?next=/">ВХОД / РЕГИСТРАЦИЯ</a></p>
+				</div>
+			</li>
+			</ul>
+		</div>
+		</top>
+		<bottom ui>
+		<div id="ui">
+			<div id="ui-left">
+				<div class="shelf">
+					<img src="{% static 'img/Sound.svg' %}" alt="Sound"/>
+				</div>
+			</div>
+			<ul id="ui-right">
+	    	<li>
+				<div class="shelf">
+				<img src="{% static 'img/twitter.svg' %}" alt="Twitter"/>
+				</div>
+			</li>
+			<li>
+				<div class="shelf">
+				<img src="{% static 'img/facebook.svg' %}" alt="Facebook"/>
+				</div>
+			</li>
+			<li>
+				<div class="shelf">
+				<img src="{% static 'img/instagram.svg' %}" alt="Instagram"/>
+				</div>
+			</li>
+			<li>
+				<div class="shelf">
+				<img src="{% static 'img/vk.svg' %}" alt="Vk"/>
+				</div>
+			</li>
+			</ul>
+		</div>
+		</bottom>
+
+		<div id="sidebar">
+		  <ul>
+		    <li><a id="a_menu" href="{% url 'exhibition_list' %}">Выставки</a></li>
+		    <li><a id="a_menu" href="{% url 'post_list' %}">Блог</a></li>
+		    <li><a id="a_menu" href="#!">Вакансии</a></li>
+		    <li><a id="a_menu" href="{% url 'about' %}">О нас</a></li>
+		  </ul>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				$('#menu-btn').click(function(){
+					$('#sidebar').toggleClass('visible');
+				});
+			});
+		</script>
+
+{% endblock %}
+
+{% block content %}
+<script>
+var pagetop, yPos, post_title;
+  function yScroll (){
+    pagetop = document.getElementById('pagetop');
+    yPos = window.pageYOffset;
+    if(yPos > 150){
+      pagetop.style.height = "120px";
+    } else {
+      pagetop.style.height = "50vh";
+    }
+  }
+  window.addEventListener("scroll", yScroll);
+</script>
+
+<article class="single_post">
+	<header id="pagetop" {% if post.background %} style="background-image: url({{post.background.url}})" {% endif %}><h1>{{ post.title }}</h1></header>
+	<main>
+
+		<p>{{ post.text|linebreaksbr }}</p>
+	</main>
+	<footer></footer>
+</article>
+
+{% endblock %}

@@ -1,18 +1,3 @@
-/**
- * @author qiao / https://github.com/qiao
- * @author mrdoob / http://mrdoob.com
- * @author alteredq / http://alteredqualia.com/
- * @author WestLangley / http://github.com/WestLangley
- * @author erich666 / http://erichaines.com
- */
-
-// This set of controls performs orbiting, dollying (zooming), and panning.
-// Unlike TrackballControls, it maintains the "up" direction object.up (+Y by default).
-//
-//    Orbit - left mouse / touch: one-finger move
-//    Zoom - middle mouse, or mousewheel / touch: two-finger spread or squish
-//    Pan - right mouse, or arrow keys / touch: two-finger move
-
 THREE.OrbitControls = function ( object, domElement ) {
 
 	this.object = object;
@@ -45,23 +30,23 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 	// Set to true to enable damping (inertia)
 	// If damping is enabled, you must call controls.update() in your animation loop
-	this.enableDamping = false;
+	this.enableDamping = true;
 	this.dampingFactor = 0.25;
 
 	// This option actually enables dollying in and out; left as "zoom" for backwards compatibility.
 	// Set to false to disable zooming
-	this.enableZoom = true;
+	this.enableZoom = false;
 	this.zoomSpeed = 1.0;
 
 	// Set to false to disable rotating
-	this.enableRotate = true;
+	this.enableRotate = false;
 	this.rotateSpeed = 1.0;
 
 	// Set to false to disable panning
 	this.enablePan = true;
-	this.panSpeed = 1.0;
+	this.panSpeed = 2.0;
 	this.screenSpacePanning = false; // if true, pan in screen-space
-	this.keyPanSpeed = 7.0;	// pixels moved per arrow key push
+	this.keyPanSpeed = 0.0;	// pixels moved per arrow key push
 
 	// Set to true to automatically rotate around the target
 	// If auto-rotate is enabled, you must call controls.update() in your animation loop
@@ -69,13 +54,13 @@ THREE.OrbitControls = function ( object, domElement ) {
 	this.autoRotateSpeed = 2.0; // 30 seconds per round when fps is 60
 
 	// Set to false to disable use of the keys
-	this.enableKeys = true;
+	this.enableKeys = false;
 
 	// The four arrow keys
 	this.keys = { LEFT: 37, UP: 38, RIGHT: 39, BOTTOM: 40 };
 
 	// Mouse buttons
-	this.mouseButtons = { ORBIT: THREE.MOUSE.LEFT, ZOOM: THREE.MOUSE.MIDDLE, PAN: THREE.MOUSE.RIGHT };
+	this.mouseButtons = { ORBIT: THREE.MOUSE.RIGHT, ZOOM: THREE.MOUSE.MIDDLE, PAN: THREE.MOUSE.LEFT };
 
 	// for reset
 	this.target0 = this.target.clone();
@@ -275,7 +260,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 	var dollyStart = new THREE.Vector2();
 	var dollyEnd = new THREE.Vector2();
 	var dollyDelta = new THREE.Vector2();
-
+/*
 	function getAutoRotationAngle() {
 
 		return 2 * Math.PI / 60 / 60 * scope.autoRotateSpeed;
@@ -299,7 +284,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 		sphericalDelta.phi -= angle;
 
 	}
-
+*/
 	var panLeft = function () {
 
 		var v = new THREE.Vector3();
@@ -361,8 +346,8 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 				// we use only clientHeight here so aspect ratio does not distort speed
 				panLeft( 2 * deltaX * targetDistance / element.clientHeight, scope.object.matrix );
-				panUp( 2 * deltaY * targetDistance / element.clientHeight, scope.object.matrix );
-
+				//panUp( 2 * deltaY * targetDistance / element.clientHeight, scope.object.matrix );
+				panUp( 0, scope.object.matrix );
 			} else if ( scope.object.isOrthographicCamera ) {
 
 				// orthographic
@@ -380,7 +365,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 		};
 
 	}();
-
+/*
 	function dollyIn( dollyScale ) {
 
 		if ( scope.object.isPerspectiveCamera ) {
@@ -401,7 +386,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 		}
 
 	}
-
+/*
 	function dollyOut( dollyScale ) {
 
 		if ( scope.object.isPerspectiveCamera ) {
@@ -422,11 +407,11 @@ THREE.OrbitControls = function ( object, domElement ) {
 		}
 
 	}
-
+*/
 	//
 	// event callbacks - update the object state
 	//
-
+/*
 	function handleMouseDownRotate( event ) {
 
 		//console.log( 'handleMouseDownRotate' );
@@ -442,7 +427,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 		dollyStart.set( event.clientX, event.clientY );
 
 	}
-
+*/
 	function handleMouseDownPan( event ) {
 
 		//console.log( 'handleMouseDownPan' );
@@ -450,7 +435,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 		panStart.set( event.clientX, event.clientY );
 
 	}
-
+/*
 	function handleMouseMoveRotate( event ) {
 
 		//console.log( 'handleMouseMoveRotate' );
@@ -496,12 +481,13 @@ THREE.OrbitControls = function ( object, domElement ) {
 		scope.update();
 
 	}
-
+*/
 	function handleMouseMovePan( event ) {
 
 		//console.log( 'handleMouseMovePan' );
 
-		panEnd.set( event.clientX, event.clientY );
+		//panEnd.set( event.clientX, event.clientY );
+		panEnd.set( event.clientX, 0 );
 
 		panDelta.subVectors( panEnd, panStart ).multiplyScalar( scope.panSpeed );
 
@@ -512,13 +498,12 @@ THREE.OrbitControls = function ( object, domElement ) {
 		scope.update();
 
 	}
-
 	function handleMouseUp( event ) {
 
 		// console.log( 'handleMouseUp' );
 
 	}
-
+/*
 	function handleMouseWheel( event ) {
 
 		// console.log( 'handleMouseWheel' );
@@ -672,7 +657,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 	//
 	// event handlers - FSM: listen for events and reset state
 	//
-
+*/
 	function onMouseDown( event ) {
 
 		if ( scope.enabled === false ) return;
@@ -680,7 +665,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 		event.preventDefault();
 
 		switch ( event.button ) {
-
+			/*
 			case scope.mouseButtons.ORBIT:
 
 				if ( scope.enableRotate === false ) return;
@@ -700,7 +685,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 				state = STATE.DOLLY;
 
 				break;
-
+				*/
 			case scope.mouseButtons.PAN:
 
 				if ( scope.enablePan === false ) return;
@@ -731,7 +716,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 		event.preventDefault();
 
 		switch ( state ) {
-
+			/*
 			case STATE.ROTATE:
 
 				if ( scope.enableRotate === false ) return;
@@ -747,7 +732,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 				handleMouseMoveDolly( event );
 
 				break;
-
+				*/
 			case STATE.PAN:
 
 				if ( scope.enablePan === false ) return;
@@ -805,7 +790,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 		event.preventDefault();
 
 		switch ( event.touches.length ) {
-
+/*
 			case 1:	// one-fingered touch: rotate
 
 				if ( scope.enableRotate === false ) return;
@@ -829,7 +814,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 			default:
 
 				state = STATE.NONE;
-
+*/
 		}
 
 		if ( state !== STATE.NONE ) {
@@ -848,7 +833,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 		event.stopPropagation();
 
 		switch ( event.touches.length ) {
-
+/*
 			case 1: // one-fingered touch: rotate
 
 				if ( scope.enableRotate === false ) return;
@@ -870,7 +855,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 			default:
 
 				state = STATE.NONE;
-
+*/
 		}
 
 	}

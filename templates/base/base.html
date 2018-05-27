@@ -4,7 +4,11 @@
 	<head>
 		<meta charset=utf-8>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="{% static 'css/exhibition.css' %}?v=0.0.3">
+		<link rel="stylesheet" href="{% static 'css/exhibition.css' %}?v=0.0.10">
+
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
 
 		<title>{% block title %}{% endblock %}</title>
 
@@ -37,7 +41,10 @@
 		//document.onmousemove = readMouseMove;
 		</script>
 
-		{% block ui %}{% endblock %}
-		{% block content %}{% endblock %}
+		{% include 'base/include_header.html' %}
+		<main id="page_content">
+			{% block content %}{% endblock %}
+		</main>
+		{% include 'base/include_footer.html' %}
 	</body>
 </html>

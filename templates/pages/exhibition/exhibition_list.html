@@ -3,75 +3,39 @@
 {% block title %}Выставки{% endblock %}
 
 {% block ui %}
-	<body>
-		<div id="logo">
-			<img src="{% static 'img/Logo.svg' %}" alt="Logo"/>
+
+
+
+		<div id="sidebar">
+		  <ul>
+		    <li><a id="a_menu" href="{% url 'exhibition_list' %}">Выставки</a></li>
+		    <li><a id="a_menu" href="{% url 'post_list' %}">Блог</a></li>
+		    <li><a id="a_menu" href="#!">Вакансии</a></li>
+		    <li><a id="a_menu" href="{% url 'about' %}">О нас</a></li>
+		  </ul>
 		</div>
-		<top ui>
-		<div id="top">
-			<div id="top-left">
-			<div class="shelf">
-					<img src="{% static 'img/menudesktop.svg' %}" alt="Menu"/>
-				</div>
-			</div>
-			<ul id="top-right">
-	    	<li>
-				<div class="shelf">
-				<img src="{% static 'img/Search.svg' %}" alt="Search"/>
-				</div>
-			</li>
-			<li>
-				<div class="text-shelf">
-					<p><a href="{% url 'auth_login' %}">ВХОД / РЕГИСТРАЦИЯ</a></p>
-				</div>
-			</li>
-			</ul>
-		</div>
-		</top>
-		<bottom ui>
-		<div id="ui">
-			<div id="ui-left">
-				<div class="shelf">
-					<img src="{% static 'img/Sound.svg' %}" alt="Sound"/>
-				</div>
-			</div>
-			<ul id="ui-right">
-	    	<li>
-				<div class="shelf">
-				<img src="{% static 'img/twitter.svg' %}" alt="Twitter"/>
-				</div>
-			</li>
-			<li>
-				<div class="shelf">
-				<img src="{% static 'img/facebook.svg' %}" alt="Facebook"/>
-				</div>
-			</li>
-			<li>
-				<div class="shelf">
-				<img src="{% static 'img/instagram.svg' %}" alt="Instagram"/>
-				</div>
-			</li>
-			<li>
-				<div class="shelf">
-				<img src="{% static 'img/vk.svg' %}" alt="Vk"/>
-				</div>
-			</li>
-			</ul>
-		</div>
-		</bottom>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				$('#menu-btn').click(function(){
+					$('#sidebar').toggleClass('visible');
+				});
+			});
+		</script>
 
 		{% endblock %}
 
 		{% block content %}
-	  <script src="{% static 'js/three.js' %}"></script>
+		<script src="{% static 'js/three.js' %}"></script>
 		<script src="{% static 'js/OrbitControls.js' %}"></script>
 
 		<script>
 
-            var camera, scene, renderer;
+            var camera, scene, renderer, raycaster;
             var cube_texture, loader;
+						var mouse = new THREE.Vector2();
 
-            init( );
+						init( );
             animation( );
 
 
@@ -81,12 +45,6 @@
 			    			camera.setFocalLength ( 40 );
                 scene = new THREE.Scene();
                 scene.background = new THREE.Color(0xffffff);
-
-                window.addEventListener('resize', function( ){
-                    renderer.setSize( window.innerWidth, window.innerHeight );
-                    camera.aspect = window.innerWidth / window.innerHeight;
-                    camera.updateProjectionMatrix( );
-                } );
 
 									var h = 49.5;
 									var geometry = new THREE.BufferGeometry();
@@ -130,68 +88,67 @@
 								scene.add( lineSegments );
 								lineSegments.position.set(-175, 0, 0);
 
-					//Cube geometry
+					//Cube 1
 						var cube_geometry = new THREE.BoxGeometry( 100, 100, 100 );
 
-								{% for exhibition in exhibitions %}
-								var texture_right = new THREE.TextureLoader().load( "{{exhibition.preview_right.url}}" );
-								var texture_left = new THREE.TextureLoader().load( "{{exhibition.preview_left.url}}" );
-								var texture_top = new THREE.TextureLoader().load( "{{exhibition.preview_top.url}}" );
-								var texture_bottom = new THREE.TextureLoader().load( "{{exhibition.preview_bottom.url}}" );
-								var texture_front = new THREE.TextureLoader().load( "{{exhibition.preview_front.url}}" );
-								var texture_back = new THREE.TextureLoader().load( "{{exhibition.preview_front.url}}" );
+{% for exhibition in exhibitions %}
+								var texture_right_{{exhibition.id}} = new THREE.TextureLoader().load( "{{exhibition.preview_right.url}}" ),
+								texture_left = new THREE.TextureLoader().load( "{{exhibition.preview_left.url}}" ),
+								texture_top = new THREE.TextureLoader().load( "{{exhibition.preview_top.url}}" ),
+								texture_bottom = new THREE.TextureLoader().load( "{{exhibition.preview_bottom.url}}" ),
+								texture_front = new THREE.TextureLoader().load( "{{exhibition.preview_front.url}}" ),
+								texture_back = new THREE.TextureLoader().load( "{{exhibition.preview_front.url}}" );
 
-								var cubeMaterials =
+								var cubeMaterials-{{exhibition.id}} =
 				[
-								new THREE.MeshPhongMaterial( { map: texture_right, side: THREE.BackSide } ), //right
-								new THREE.MeshPhongMaterial( { map: texture_left, side: THREE.BackSide } ), //left
-								new THREE.MeshPhongMaterial( { map: texture_top, side: THREE.BackSide } ), //top
-								new THREE.MeshPhongMaterial( { map: texture_bottom, side: THREE.BackSide } ), //bottom
-								new THREE.MeshPhongMaterial( { map: texture_front, side: THREE.BackSide } ), //front
-								new THREE.MeshPhongMaterial( { map: texture_back, side: THREE.BackSide } ) //back
+								new THREE.MeshBasicMaterial( { map: texture_right_{{exhibition.id}}, side: THREE.BackSide } ), //right
+								new THREE.MeshBasicMaterial( { map: texture_left, side: THREE.BackSide } ), //left
+								new THREE.MeshBasicMaterial( { map: texture_top, side: THREE.BackSide } ), //top
+								new THREE.MeshBasicMaterial( { map: texture_bottom, side: THREE.BackSide } ), //bottom
+								new THREE.MeshBasicMaterial( { map: texture_front, side: THREE.BackSide } ), //front
+								new THREE.MeshBasicMaterial( { map: texture_back, side: THREE.BackSide } ) //back
 				];
 					var cube_material = new THREE.MeshFaceMaterial( cubeMaterials );
 					var cube = new THREE.Mesh( cube_geometry, cube_material );
 					scene.add( cube );
-								{% endfor %}
-								/*
-								var cube_geometry = new THREE.BoxGeometry( 100, 100, 100 );
-
-                var texture_right = new THREE.TextureLoader().load( "{% static 'img/right.jpg' %}" );
-                var texture_left = new THREE.TextureLoader().load( "{% static 'img/left.jpg' %}" );
-                var texture_top = new THREE.TextureLoader().load( "{% static 'img/top.jpg' %}" );
-                var texture_bottom = new THREE.TextureLoader().load( "{% static 'img/bottom.jpg' %}" );
-                var texture_front = new THREE.TextureLoader().load( "{% static 'img/back.jpg' %}" );
-                var texture_back = new THREE.TextureLoader().load( "{% static 'img/back.jpg' %}" );
-
-          			var cubeMaterials =
-				[
-								new THREE.MeshPhongMaterial( { map: texture_right, side: THREE.BackSide } ), //right
-								new THREE.MeshPhongMaterial( { map: texture_left, side: THREE.BackSide } ), //left
-								new THREE.MeshPhongMaterial( { map: texture_top, side: THREE.BackSide } ), //top
-								new THREE.MeshPhongMaterial( { map: texture_bottom, side: THREE.BackSide } ), //bottom
-								new THREE.MeshPhongMaterial( { map: texture_front, side: THREE.BackSide } ), //front
-								new THREE.MeshPhongMaterial( { map: texture_back, side: THREE.BackSide } ) //back
-				];
-			    var cube_material = new THREE.MeshFaceMaterial( cubeMaterials );
-			    var cube = new THREE.Mesh( cube_geometry, cube_material );
-          scene.add( cube );
-					*/
+{% endfor %}
+					// Black cubes
 					var cube_geometry_2 = new THREE.BoxGeometry( 100.2, 100.2, 100.2 );
 					var cubeBlackMaterials =
 					[
-						new THREE.MeshPhongMaterial( { color: 0x000000, side: THREE.FrontSide } ),
-						new THREE.MeshPhongMaterial( { color: 0x000000, side: THREE.FrontSide } ),
-						new THREE.MeshPhongMaterial( { color: 0x000000, side: THREE.FrontSide } ),
-						new THREE.MeshPhongMaterial( { color: 0x000000, side: THREE.FrontSide } ),
-						new THREE.MeshPhongMaterial( { color: 0x000000, side: THREE.BackSide } ),
-						new THREE.MeshPhongMaterial( { color: 0x000000, side: THREE.FrontSide } )
+						new THREE.MeshBasicMaterial( { color: 0x000000, side: THREE.FrontSide } ),
+						new THREE.MeshBasicMaterial( { color: 0x000000, side: THREE.FrontSide } ),
+						new THREE.MeshBasicMaterial( { color: 0x000000, side: THREE.FrontSide } ),
+						new THREE.MeshBasicMaterial( { color: 0x000000, side: THREE.FrontSide } ),
+						new THREE.MeshBasicMaterial( { color: 0x000000, side: THREE.BackSide } ),
+						new THREE.MeshBasicMaterial( { color: 0x000000, side: THREE.FrontSide } )
 					];
 
 					var cube_black_material = new THREE.MeshFaceMaterial( cubeBlackMaterials );
-					var cube_black = new THREE.Mesh( cube_geometry_2, cube_black_material );
-					scene.add( cube_black );
 
+					for ( var i = 0; i < 7; i ++ ) {
+						var object = new THREE.Mesh( cube_geometry_2, cubeBlackMaterials );
+						object.position.x = 175 * i;
+
+						scene.add( object );
+				}
+
+					//Text
+					var loader = new THREE.FontLoader();
+					loader.load( "{% static 'fonts/Univers_Condensed_Bold.json' %}", function ( font ) {
+						var textShape = new THREE.BufferGeometry();
+						var textMat = new THREE.MeshBasicMaterial( { color: 0x000000, side: THREE.DoubleSide } );
+						//var message = "Three.js\nSimple text.";
+						var message = "НАИМЕНОВАНИЕ\nВЫСТАВКИ";
+						var shapes = font.generateShapes( message, 9 );
+						var geometry = new THREE.ShapeGeometry( shapes );
+
+						geometry.computeBoundingBox();
+						textShape.fromGeometry( geometry );
+						text = new THREE.Mesh( textShape, textMat );
+						text.position.set(-50, 65, 50);
+						scene.add( text );
+					} );
 
 					//Plane hor
 					var shadowtex = new THREE.TextureLoader().load( "{% static 'img/shadowtex.jpg' %}" );
@@ -202,7 +159,7 @@
           plane.position.set(350, -50.2, 0);
           plane.rotation.x = -Math.PI / 2;
 
-          //line hor
+          //Line hor
 					var geometry = new THREE.Geometry();
 					geometry.vertices.push(
 						new THREE.Vector3( -400, -40, -250 ),
@@ -210,26 +167,53 @@
 					);
 					var line = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: 0x000000, linewidth: 2 } ) );
 					scene.add(line);
-            //Light
-            var ambientLight = new THREE.AmbientLight( 0xFFFFFF, 1 );
-            scene.add( ambientLight );
 
-            renderer = new THREE.WebGLRenderer({ antialias: true });
-            renderer.setSize( window.innerWidth, window.innerHeight );
-            renderer.shadowMap.enabled = true;
-			    	renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-            document.body.appendChild( renderer.domElement );
+          renderer = new THREE.WebGLRenderer({ antialias: true });
+          renderer.setSize( window.innerWidth, window.innerHeight );
+          renderer.shadowMap.enabled = true;
+			    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+          document.getElementById('page_content').appendChild( renderer.domElement );
 
-						// controls
-						controls = new THREE.OrbitControls( camera, renderer.domElement );
+					// Controls
+					controls = new THREE.OrbitControls( camera, renderer.domElement );
+
+					document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+					window.addEventListener( 'resize', onWindowResize, false );
       }
 
+			function onWindowResize() {
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+			}
 
-            function animation( ){
-                requestAnimationFrame( animation );
-								controls.update()
-                renderer.render( scene, camera );
-            }
+			function onDocumentMouseMove( event ) {
+				event.preventDefault();
+				mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+				mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+			}
+
+      function animation( ){
+        requestAnimationFrame( animation );
+				controls.update()
+				render();
+
+      }
+
+			function render() {
+	/*		raycaster.setFromCamera( mouse, camera );
+
+				var intersects = raycaster.intersectObjects( scene.children );
+
+
+				for ( var i = 0; i < intersects.length; i++ ) {
+
+				intersects[ i ].object.material.color.set( 0xff0000 );
+
+			}
+*/
+				renderer.render( scene, camera );
+			}
 
 		</script>
 		{% endblock %}

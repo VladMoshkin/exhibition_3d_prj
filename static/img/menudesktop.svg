@@ -1,16 +1,7 @@
-<svg width="30" height="30" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="Canvas" fill="none">
-<g id="Menu Desktop">
-<g id="Rectangle 3.1">
-<rect width="30" height="2" transform="translate(0 14)" fill="black"/>
-</g>
-<g id="Rectangle 3.2">
-<rect width="30" height="2" transform="translate(0 28)" fill="black"/>
-</g>
-<g id="Rectangle 3.3">
-<rect width="30" height="2" fill="black"/>
-</g>
-</g>
-</g>
-</svg>
+<svg viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
+<rect width="30" height="2" transform="translate(0 14)" />
+<rect width="30" height="2" transform="translate(0 28)" />
+<rect width="30" height="2" />
+
+</svg>

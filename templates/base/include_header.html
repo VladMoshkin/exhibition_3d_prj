@@ -1,0 +1,14 @@
+{% load staticfiles %}
+<header>
+  <section class="menu">
+    <a>
+      <svg viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <rect width="30" height="2" transform="translate(0 14)" />
+        <rect width="30" height="2" transform="translate(0 28)" />
+        <rect width="30" height="2" />
+      </svg>
+    </a>
+  </section>
+  <section class="logo"><img src="{% static 'img/Logo.svg' %}" alt="Logo"/></section>
+  <section class="auth"><a href="{% url 'auth_login' %}?next=/">ВХОД / РЕГИСТРАЦИЯ</a></section>
+</header>

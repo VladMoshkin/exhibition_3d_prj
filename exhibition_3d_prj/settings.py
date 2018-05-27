@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'blog',
     'news',
     'exhibition',
+    'image',
     #'accounts',
 ]
 
@@ -134,4 +135,4 @@ STATIC_ROOT = STAT_ROOT
 MEDIA_URL = '/media/'
 MEDIA_ROOT = MEDI_DIR
 
-LOGIN_REDIRECT_URL = '/account/'
+LOGIN_REDIRECT_URL = '/profile/'

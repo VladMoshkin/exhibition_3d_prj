@@ -4,6 +4,7 @@ from django.utils import timezone
 
 class Post(models.Model):
     preview = models.ImageField(upload_to='blog_preview', null=True, blank=True)
+    background = models.ImageField(upload_to='blog_background', null=True, blank=True)
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=100)
     text = models.TextField()

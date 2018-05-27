@@ -62,7 +62,6 @@
 {% endblock %}
 
 {% block content %}
-<div class="enter_content">
 		<header>
 			{% if user.is_authenticated %}
 			<h1>{% block head %}{% endblock %}</h1>
@@ -75,11 +74,7 @@
 	-->
 		</header>
 			<main>
-				<section class="card small auth">
 					{% block register %}
 					{% endblock %}
-				</section>
 			</main>
-
-</div>
 {% endblock %}

@@ -4,17 +4,14 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from exhibition import views
-from accounts import views
+from accounts import views as acc_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^exhibition/', include('exhibition.urls')),
+    url(r'', include('exhibition.urls')),
+    url(r'^blog/', include('blog.urls')),
     url(r'^account/', include('registration.backends.simple.urls')),
-    url(r'^logout/$', views.logout_user, name="logout"),
-    url(r'^profile/$', views.profile, name="profile"),
-    url(r'^api/submit/$', views.submit, name="submit"),
-    url(r'^api/change/user/$', views.change_user, name="change_user"),
-    url(r'^api/change/user-info/$', views.change_userinfo, name="change_userinfo"),
+    url(r'^profile/$', acc_views.profile, name="profile"),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
