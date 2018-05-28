@@ -30,6 +30,7 @@ body{
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+	font-family: 'Univers Condensed';
 }
 
 body>main{
@@ -41,7 +42,6 @@ body>footer{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 8px;
 	position: fixed;
 	width: 100vw;
 	z-index: 999;
@@ -50,11 +50,13 @@ body>footer{
 body>header{
 	top: 0;
 	left: 0;
+	padding: 12px 50px 0px 50px;
 }
 
 body>footer{
 	bottom: 0;
 	left: 0;
+	padding: 0px 50px 40px 50px;
 }
 
 body>footer>section:last-child,
@@ -64,7 +66,7 @@ body>footer>section:last-child a{
 }
 
 body>footer>section:last-child a{
-	margin-right: 8px;
+	margin-right: 20px;
 }
 
 body>footer>section:last-child a:last-child{
@@ -78,22 +80,43 @@ body>header>section:last-child{
 }
 
 body>header .logo{
-	min-width: 65px;
+	width: 68px;
+	height: 84px;
+	margin-top: 8px;
+}
+
+body>header .menu {
+	display: flex;
+}
+
+body>header .menu a{
+	margin-top: 4px;
+	margin-right: 24px;
 }
 
 body>header .menu svg{
 	height: 30px;
+	width: 30px;
 }
 
 body>header .auth{
 	text-align: right;
-
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+	font-size: 24pt;
 }
 
 .single_post>main{
 	min-height: 200vh;
-	padding-top: 50vh;
-	padding-left: 50vw;
+	padding-top: 80vh;
+	padding-left: 25vw;
+	padding-right: 15vw;
+}
+
+.single_post>main p{
+	font-family: 'Univers';
+	font-size: 18pt;
 }
 
 .single_post>header{
@@ -103,16 +126,27 @@ body>header .auth{
 	background-position: top;
 	background-size: cover;
 	height: 50vh;
-	transition: all 0.1s ease-out 0s;
+	transition: all 0.3s ease-out 0s;
 	position: fixed;
 	top: 0;
 	left:0;
 	width: 100vw;
 }
 
-.single_post>header h1{
-	margin-bottom: -50px;
-	width: 49vw;
+.single_post>header div{
+	margin-bottom: -100px;
+	padding-left: 105px;
+}
+
+.single_post>header>div h2{
+	width: 30vw;
+}
+
+.single_post>header>div p{
+	width: 30vw;
+	font-size: 14pt;
+	text-transform: uppercase;
+	margin-top: 4px;
 }
 
 #sidebar{
@@ -147,19 +181,15 @@ body>header .auth{
 	font-size: 72px;
 }
 
-body{
-	font-family: 'Univers Condensed';
-}
-
-h1{
+h1 {
 	font-weight: bold;
 	font-size: 24pt;
 	text-transform: uppercase;
 }
 
 h2{
-	font-size: 18pt;
-	font-weight: normal;
+	font-weight: bold;
+	font-size: 24pt;
 	text-transform: uppercase;
 }
 
@@ -170,9 +200,6 @@ ul{
 A {
 	text-decoration: none;
 	color: black;
-	font-family: 'Univers Condensed';
-	font-weight: bold;
-	font-size: 24pt;
 }
 A:hover {
   text-decoration: none;
@@ -181,13 +208,14 @@ A:hover {
 .list{
 	display: grid;
 	grid-template-columns: repeat(3, 272px);
-	grid-row-gap: 120px;
+	grid-row-gap: 100px;
 	justify-content: space-between;
-	margin-top: 120px;
+	margin-top: 200px;
+	margin-bottom: 100px;
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;
-	max-width: 1232px;
+	max-width: 1230px;
 }
 .post{
 	min-height: 360px;
@@ -197,11 +225,19 @@ A:hover {
 .post>main{
 	display: flex;
 	flex-direction: column;
+	margin-top: 8px;
 
 }
 .post>main>h2{
 	flex-grow: 1;
 }
+
+.post>main>p{
+	font-size: 14pt;
+	text-transform: uppercase;
+	margin-top: 4px;
+}
+
 .post>header{
 	background-position: center;
 	background-size: cover;
@@ -209,39 +245,4 @@ A:hover {
 .post>header>div{
 	display: block;
 	padding-top: 100%;
-}
-
-.enter_content{
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	height: calc(100% - 160px);
-	width: calc(100% - 80px);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-}
-
-.login_area{
-	width: 480px;
-	margin: 80px;
-	font-size: 18pt;
-	font-family: 'Univers';
-	font-weight: normal;
-}
-.registration_area{
-	width: 480px;
-	margin: 80px;
-	font-size: 18pt;
-	font-family: 'Univers';
-	font-weight: normal;
-}
-.shelf{
-	height: 36px;
-	width: 36px;
-	display: flex;
-	justify-content: center;
-  align-items: center;
 }

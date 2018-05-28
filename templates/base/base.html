@@ -4,17 +4,39 @@
 	<head>
 		<meta charset=utf-8>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="{% static 'css/exhibition.css' %}?v=0.0.10">
-
-		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-		<meta http-equiv="Pragma" content="no-cache" />
-		<meta http-equiv="Expires" content="0" />
+		<link rel="stylesheet" href="{% static 'css/exhibition.css' %}?v=0.0.9">
 
 		<title>{% block title %}{% endblock %}</title>
+	</head>
+	<body>
+		{% include 'base/include_header.html' %}
+		<main>
+			{% block content %}{% endblock %}
+		</main>
+		{% include 'base/include_footer.html' %}
+	</body>
+</html>
 
+<!--	<div id="sidebar">
+		<ul>
+			<li><a id="a_menu" href="{% url 'exhibition_list' %}">Выставки</a></li>
+			<li><a id="a_menu" href="{% url 'post_list' %}">Блог</a></li>
+			<li><a id="a_menu" href="#!">Вакансии</a></li>
+			<li><a id="a_menu" href="{% url 'about' %}">О нас</a></li>
+		</ul>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('#menu-btn').click(function(){
+				$('#sidebar').toggleClass('visible');
+			});
+		});
+	</script>
+-->
+
+		<!--
 		<style>
-			body { margin: 0; }
-			canvas { width: 100%; height: 100%; }
 			#cursor {
 				display: block;
 				position: absolute;
@@ -24,10 +46,10 @@
 				transform: translate(50px, 50px);
 			}
 		</style>
-  </head>
+	-->
 
-  <body>
-		<!--<div id ="cursor" class="cursor"></div>-->
+		<!--Cursor
+		<div id ="cursor" class="cursor"></div>
 		<script>
 		var theThing = document.querySelector("#cursor");
 		function readMouseMove(e){
@@ -40,11 +62,4 @@
 		}
 		//document.onmousemove = readMouseMove;
 		</script>
-
-		{% include 'base/include_header.html' %}
-		<main id="page_content">
-			{% block content %}{% endblock %}
-		</main>
-		{% include 'base/include_footer.html' %}
-	</body>
-</html>
+		-->

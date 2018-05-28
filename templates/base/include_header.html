@@ -2,13 +2,26 @@
 <header>
   <section class="menu">
     <a>
-      <svg viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <rect width="30" height="2" transform="translate(0 14)" />
         <rect width="30" height="2" transform="translate(0 28)" />
         <rect width="30" height="2" />
       </svg>
     </a>
+    <h1>{% block pagetitle %}Профиль{% endblock %}</h1>
   </section>
-  <section class="logo"><img src="{% static 'img/Logo.svg' %}" alt="Logo"/></section>
-  <section class="auth"><a href="{% url 'auth_login' %}?next=/">ВХОД / РЕГИСТРАЦИЯ</a></section>
+  <section class="logo">
+    <svg fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1.302 19H2.688V13.638L7.35 19H9.31L4.298 13.414L8.82 8.892H6.902L2.688 13.316V8.892H1.302V19Z" transform="translate(0 65.2353)" fill="black"/>
+        <path d="M32.4778 16.368L30.9938 19H32.5338L37.5458 8.892H35.9638L33.2058 14.884H33.1778L30.4478 8.892H28.8938L32.4778 16.368Z" transform="translate(0.829102 65.2353)" fill="black"/>
+        <path d="M59.7336 13.148V10.082H64.6056V8.892H58.3336V19H61.9456C62.8976 19 63.2336 18.958 63.6816 18.804C64.8856 18.384 65.5156 17.432 65.5156 16.074C65.5156 14.156 64.3116 13.148 62.0296 13.148H59.7336ZM59.7336 14.352H62.0716C63.3316 14.352 64.0456 14.982 64.0456 16.074C64.0456 17.166 63.3316 17.796 62.0716 17.796H59.7336V14.352Z" transform="translate(1.65869 65.2353)" fill="black"/>
+        <rect width="64.6829" height="64.2353" transform="translate(1.65869 1)" stroke="black" stroke-width="2"/>
+        <rect width="36.4878" height="36.2353" transform="translate(15.7559 15)" stroke="black" stroke-width="2"/>
+        <path d="M0 0L14.0976 14" transform="translate(1.65869 1)" stroke="black" stroke-width="2"/>
+        <path d="M0 14L14.0976 0" transform="translate(52.2441 1)" stroke="black" stroke-width="2"/>
+        <path d="M14.0976 0L0 14" transform="translate(1.65869 51.2353)" stroke="black" stroke-width="2"/>
+        <path d="M0 0L14.0976 14" transform="translate(52.2441 51.2353)" stroke="black" stroke-width="2"/>
+    </svg>
+  </section>
+  <section class="auth"><a href="{% url 'auth_login' %}">ВХОД / РЕГИСТРАЦИЯ</a></section>
 </header>
