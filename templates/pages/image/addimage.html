@@ -1,0 +1,19 @@
+{% extends "base/base.html" %}
+{% load staticfiles i18n %}
+
+{% block title %}Подать работу на выставку{% endblock %}
+{% block pagetitle %}Подать{% endblock %}
+{% block content %}
+<div id="addimage_form"
+  <h2>Jnghfdbnm</h2>
+  {% if old_image %}
+  <img src='{{old_image.image.url}}'>
+  {% else %}
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Отправить</button>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}

@@ -182,6 +182,10 @@ body>header .auth{
 	font-size: 72px;
 }
 
+#addimage_form{
+	margin: 200px;
+}
+
 h1 {
 	font-weight: bold;
 	font-size: 24pt;

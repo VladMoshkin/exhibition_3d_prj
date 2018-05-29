@@ -2,13 +2,13 @@
 <header>
   <section class="menu">
     <a>
-      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <svg id="menu-btn" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <rect width="30" height="2" transform="translate(0 14)" />
         <rect width="30" height="2" transform="translate(0 28)" />
         <rect width="30" height="2" />
       </svg>
     </a>
-    <h1>{% block pagetitle %}Профиль{% endblock %}</h1>
+    <h1 class="pagetitle"></h1>
   </section>
   <section class="logo">
     <svg fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,4 +24,5 @@
     </svg>
   </section>
   <section class="auth"><a href="{% url 'auth_login' %}">ВХОД / РЕГИСТРАЦИЯ</a></section>
+  
 </header>
