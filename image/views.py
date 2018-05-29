@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from exhibition.models import *
+from django.utils import timezone
+from .models import Image
 
-# Create your views here.
+def addimage(request):
+    return render(request, 'pages/image/addimage.html', {})

@@ -8,11 +8,17 @@
 var pagetop, yPos, post_title;
   function yScroll (){
     pagetop = document.getElementById('pagetop');
+    titletop = document.getElementById('titletop');
+    titlemargin = document.getElementById('titlemargin');
     yPos = window.pageYOffset;
     if(yPos > 150){
       pagetop.style.height = "120px";
+      titletop.style.fontSize = "24pt";
+      titlemargin.style.marginBottom = "-100px";
     } else {
       pagetop.style.height = "50vh";
+      titletop.style.fontSize = "48pt";
+      titlemargin.style.marginBottom = "-140px";
     }
   }
   window.addEventListener("scroll", yScroll);
@@ -20,8 +26,8 @@ var pagetop, yPos, post_title;
 
 <article class="single_post">
 	<header id="pagetop" {% if post.background %} style="background-image: url({{post.background.url}})" {% endif %}>
-    <div>
-      <h2>{{ post.title }}</h2>
+    <div id="titlemargin">
+      <h2 id="titletop">{{ post.title }}</h2>
       <p>{{ post.published_date }}</p>
     </div>
   </header>

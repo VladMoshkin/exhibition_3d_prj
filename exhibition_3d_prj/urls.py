@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'', include('exhibition.urls')),
     url(r'^blog/', include('blog.urls')),
     url(r'^account/', include('registration.backends.simple.urls')),
-    url(r'^profile/$', acc_views.profile, name="profile"),
+    url(r'^addimage/', include('image.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
