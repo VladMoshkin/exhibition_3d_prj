@@ -1,26 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 74.8 94.3" style="enable-background:new 0 0 74.8 94.3;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:none;stroke:#000000;stroke-width:2;}
-</style>
-
-
-		<path id="Ð_x9A_" d="M0.7,94.3h1.4v-5.4l4.7,5.4h2l-5-5.6l4.5-4.5H6.3l-4.2,4.4v-4.4H0.7V94.3z"/>
-		<path id="Ð_xA3_" d="M36.7,91.7l-1.5,2.6h1.5l5-10.1h-1.6l-2.8,6h0l-2.7-6h-1.6L36.7,91.7z"/>
-		<path id="Ð_x91_" d="M68.8,88.4v-3.1h4.9v-1.2h-6.3v10.1H71c1,0,1.3,0,1.7-0.2c1.2-0.4,1.8-1.4,1.8-2.7c0-1.9-1.2-2.9-3.5-2.9
-			H68.8z M68.8,89.6h2.3c1.3,0,2,0.6,2,1.7c0,1.1-0.7,1.7-2,1.7h-2.3V89.6z"/>
-
-			<rect x="-0.6" class="st0" width="72.3" height="72.3"/>
-
-
-			<rect x="-0.6" y="0" class="st0" width="40.8" height="40.8"/>
-
-		<path id="Vector" class="st0" d="M1.3,1L17,16.8"/>
-		<path id="Vector_2" class="st0" d="M57.8,16.8L73.6,1"/>
-		<path id="Vector_3" class="st0" d="M17,57.5L1.3,73.3"/>
-		<path id="Vector_4" class="st0" d="M57.8,57.5l15.8,15.8"/>
-
-
+<svg width="68" height="85" viewBox="0 0 68 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 10.108H1.386V4.746L6.048 10.108H8.008L2.996 4.522L7.518 0H5.6L1.386 4.424V0H0V10.108Z" transform="translate(1.30176 74.1273)" fill="black"/>
+<path d="M3.584 7.476L2.1 10.108H3.64L8.652 0H7.07L4.312 5.992H4.284L1.554 0H0L3.584 7.476Z" transform="translate(29.7227 74.1273)" fill="black"/>
+<path d="M1.4 4.256V1.19H6.272V0H0V10.108H3.612C4.564 10.108 4.9 10.066 5.348 9.912C6.552 9.492 7.182 8.54 7.182 7.182C7.182 5.264 5.978 4.256 3.696 4.256H1.4ZM1.4 5.46H3.738C4.998 5.46 5.712 6.09 5.712 7.182C5.712 8.274 4.998 8.904 3.738 8.904H1.4V5.46Z" transform="translate(59.9922 74.1273)" fill="black"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H66.6829V66.2353H0V0ZM2 2V64.2353H64.6829V2H2Z" transform="translate(0.658691)" fill="black"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H38.4878V38.2353H0V0ZM2 2V36.2353H36.4878V2H2Z" transform="translate(14.7559 14)" fill="black"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M14.0976 15.4191L0 1.41912L1.40929 0L15.5069 14L14.0976 15.4191Z" transform="translate(0.954102 0.290405)" fill="black"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M15.5069 1.41912L1.40929 15.4191L0 14L14.0976 0L15.5069 1.41912Z" transform="translate(51.5396 0.290405)" fill="black"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 14L14.0976 0L15.5069 1.41912L1.40929 15.4191L0 14Z" transform="translate(0.954102 50.5258)" fill="black"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M14.0976 15.4191L0 1.41912L1.40929 0L15.5069 14L14.0976 15.4191Z" transform="translate(51.5396 50.5258)" fill="black"/>
 </svg>

@@ -45,6 +45,7 @@ body>footer{
 	position: fixed;
 	width: 100vw;
 	z-index: 999;
+	fill: black;
 }
 
 body>header{
@@ -153,33 +154,39 @@ body>header .auth{
 #sidebar{
 	width: 100%;
 	height: 100%;
-	display: block;
+	display: flex;
 	position: fixed;
 	left: -100%;
 	top: 0px;
 	background-color: white;
 	z-index: 1;
 	transition: left 0.7s ease;
+	align-items: center;
+	justify-content: space-between;
 }
 #sidebar.visible{
 	left: 0px;
 }
 
-#sidebar ul{
-	text-transform: uppercase;
-	margin: 120px 0px 0px 240px;
+#sidebar nav{
+	padding-left: 16vw;
+}
+
+#sidebar>section{
+	padding-right: 13vw;
 }
 
 #sidebar li{
 	margin-bottom: 60px;
+	font-size: 72px;
+	font-weight: bold;
+	text-transform: uppercase;
 }
-
+#sidebar li:last-child{
+	margin-bottom: 0px;
+}
 #menu-btn{
 		cursor: pointer;
-}
-
-#a_menu{
-	font-size: 72px;
 }
 
 #addimage_form{

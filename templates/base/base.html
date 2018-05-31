@@ -4,7 +4,8 @@
 	<head>
 		<meta charset=utf-8>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="{% static 'css/exhibition.css' %}?v=0.0.5">
+		<link rel="stylesheet" href="{% static 'css/exhibition.css' %}?v=0.0.10">
+		<link rel="icon" href="{% static 'img/favicon.png' %}">
 
 		<title>{% block title %}{% endblock %}</title>
 		<style>
@@ -15,12 +16,17 @@
 	<body>
 		{% include 'base/include_header.html' %}
 		<div id="sidebar">
-			<ul>
-				<li><a id="a_menu" href="{% url 'exhibition_list' %}">Выставки</a></li>
-				<li><a id="a_menu" href="{% url 'post_list' %}">Блог</a></li>
-				<li><a id="a_menu" href="#!">Вакансии</a></li>
-				<li><a id="a_menu" href="{% url 'about' %}">О нас</a></li>
-			</ul>
+			<nav>
+				<ul>
+					<li><a id="a_menu" href="{% url 'exhibition_list' %}">Выставки</a></li>
+					<li><a id="a_menu" href="{% url 'post_list' %}">Блог</a></li>
+					<li><a id="a_menu" href="#!">Вакансии</a></li>
+					<li><a id="a_menu" href="{% url 'about' %}">О нас</a></li>
+				</ul>
+			</nav>
+			<section id="right_sidebar">
+				<a href="#!"><img src="{% static 'img/addimage.svg' %}" alt="Addimage"/></a>
+			</section>
 		</div>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script>
