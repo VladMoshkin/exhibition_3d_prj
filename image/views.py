@@ -13,12 +13,12 @@ def addimage(request, pk):
         old_image = Image.objects.filter(author=user, exhibition=exhibition).first()
         context['old_image'] = old_image
     if request.method == 'POST':
-        print(request.POST)
+        print(request.POST, request.FILES)
         image, created = Image.objects.get_or_create(
                                     exhibition=exhibition,
                                     author=user,
                                     defaults={
                                     'title': request.POST['title'],
-                                    'image': request.POST['image']
+                                    'image': request.POST and request.FILES['image']
                                     })
     return render(request, 'pages/image/addimage.html', context )

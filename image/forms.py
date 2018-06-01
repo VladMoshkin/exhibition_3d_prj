@@ -6,4 +6,4 @@ class AddImage(forms.ModelForm):
     image = forms.ImageField()
     class Meta:
         model = Image
-        fields = ['title', 'image']
+        fields = ('title', 'image',)
