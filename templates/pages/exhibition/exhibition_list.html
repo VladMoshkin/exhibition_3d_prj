@@ -100,13 +100,13 @@
 						var textShape = new THREE.BufferGeometry();
 						var textMat = new THREE.MeshBasicMaterial( { color: 0x000000, side: THREE.DoubleSide } );
 						var message = "{{exhibition.title}}";
-						var shapes = font.generateShapes( message, 9 );
+						var shapes = font.generateShapes( message, 7 );
 						var geometry = new THREE.ShapeGeometry( shapes );
 
 						geometry.computeBoundingBox();
 						textShape.fromGeometry( geometry );
 						text = new THREE.Mesh( textShape, textMat );
-						text.position.set(0, 65, 50);
+						text.position.set(0, 57, 50);
 						text.position.x = 175 * {{exhibition.id}} - 225;
 						scene.add( text );
 					} );

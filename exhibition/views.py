@@ -16,3 +16,6 @@ def exhibition_detail(request, pk):
 
 def about(request):
     return render(request, 'pages/exhibition/about_us.html', {})
+
+def profile(request):
+    return render(request, 'pages/exhibition/profile.html', {})

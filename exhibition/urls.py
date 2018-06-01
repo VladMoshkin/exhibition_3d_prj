@@ -6,5 +6,6 @@ urlpatterns = [
     url(r'^$', views.exhibition_list, name='exhibition_list'),
     url(r'^exhibitions/(?P<pk>\d+)/$', views.exhibition_detail, name='exhibition_detail'),
     url(r'^exhibitions/(?P<pk>\d+)/addimage/$', addimage, name='addimage'),
-    url(r'^about/', views.about, name='about')
+    url(r'^about/$', views.about, name='about'),
+    url(r'^profile/$', views.profile, name='profile'),
 ]

@@ -23,6 +23,12 @@
       <path fill-rule="evenodd" clip-rule="evenodd" d="M14.0976 15.4191L0 1.41912L1.40929 0L15.5069 14L14.0976 15.4191Z" transform="translate(51.5396 50.5258)"/>
     </svg>
   </section>
-  <section class="auth"><a href="{% url 'auth_login' %}">ВХОД / РЕГИСТРАЦИЯ</a></section>
+  <section class="auth">
+    {% if user.is_authenticated %}
+    <a><h2>Профиль</h2></a>
+    {% else %}
+    <a href="{% url 'auth_login' %}">ВХОД / РЕГИСТРАЦИЯ</a>
+    {% endif %}
+  </section>
 
 </header>

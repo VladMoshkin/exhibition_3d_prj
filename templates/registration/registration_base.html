@@ -1,65 +1,6 @@
 {% extends "base/base.html" %}
 {% load staticfiles i18n %}
 {% block title %}{% endblock %}
-{% block ui %}
-<div id="logo">
-	<img src="{% static 'img/Logo.svg' %}" alt="Logo"/>
-</div>
-<top ui>
-<div id="top">
-	<div id="top-left">
-	<div class="shelf">
-			<img src="{% static 'img/menudesktop.svg' %}" alt="Menu"/>
-		</div>
-	</div>
-	<ul id="top-right">
-		<li>
-		<div class="shelf">
-		{% block ico_rigth_top %}
-		<img src="{% static 'img/Search.svg' %}" alt="Search"/>
-		{% endblock %}
-		</div>
-	</li>
-	<li>
-		<div class="text-shelf">
-			<p><a href="{% url 'auth_login' %}">ВХОД / РЕГИСТРАЦИЯ</a></p>
-		</div>
-	</li>
-	</ul>
-</div>
-</top>
-<bottom ui>
-<div id="ui">
-	<div id="ui-left">
-		<div class="shelf">
-			<img src="{% static 'img/Sound.svg' %}" alt="Sound"/>
-		</div>
-	</div>
-	<ul id="ui-right">
-		<li>
-		<div class="shelf">
-		<img src="{% static 'img/twitter.svg' %}" alt="Twitter"/>
-		</div>
-	</li>
-	<li>
-		<div class="shelf">
-		<img src="{% static 'img/facebook.svg' %}" alt="Facebook"/>
-		</div>
-	</li>
-	<li>
-		<div class="shelf">
-		<img src="{% static 'img/instagram.svg' %}" alt="Instagram"/>
-		</div>
-	</li>
-	<li>
-		<div class="shelf">
-		<img src="{% static 'img/vk.svg' %}" alt="Vk"/>
-		</div>
-	</li>
-	</ul>
-</div>
-</bottom>
-{% endblock %}
 
 {% block content %}
 		<header>
