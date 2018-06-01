@@ -108,6 +108,10 @@ body>header .auth{
 	font-size: 24pt;
 }
 
+#page_content{
+	overflow: hidden;
+}
+
 .single_post>main{
 	min-height: 200vh;
 	padding-top: 80vh;

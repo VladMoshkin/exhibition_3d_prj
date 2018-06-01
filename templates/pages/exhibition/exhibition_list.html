@@ -3,13 +3,15 @@
 
 {% block title %}Выставки{% endblock %}
 
+{% block pagetitle %}Выставки{% endblock %}
+
 {% block content %}
 		<script src="{% static 'js/three.js' %}"></script>
 		<script src="{% static 'js/OrbitControls.js' %}"></script>
 
 		<script>
 
-            var camera, scene, renderer, raycaster;
+            var camera, scene, renderer;
             var cube_texture, loader;
 						var mouse = new THREE.Vector2();
 
@@ -67,29 +69,49 @@
 								lineSegments.position.set(-175, 0, 0);
 
 					//Cube 1
-						var cube_geometry = new THREE.BoxGeometry( 100, 100, 100 );
+					var cube_geometry = new THREE.BoxGeometry( 100, 100, 100 );
 
-{% for exhibition in exhibitions %}
-								var texture_right_{{exhibition.id}} = new THREE.TextureLoader().load( "{{exhibition.preview_right.url}}" ),
-								texture_left = new THREE.TextureLoader().load( "{{exhibition.preview_left.url}}" ),
-								texture_top = new THREE.TextureLoader().load( "{{exhibition.preview_top.url}}" ),
-								texture_bottom = new THREE.TextureLoader().load( "{{exhibition.preview_bottom.url}}" ),
-								texture_front = new THREE.TextureLoader().load( "{{exhibition.preview_front.url}}" ),
-								texture_back = new THREE.TextureLoader().load( "{{exhibition.preview_front.url}}" );
+					{% for exhibition in exhibitions %}
 
-								var cubeMaterials_{{exhibition.id}} =
-				[
+							var texture_right_{{exhibition.id}} = new THREE.TextureLoader().load( "{{exhibition.preview_right.url}}" ),
+									texture_left_{{exhibition.id}} = new THREE.TextureLoader().load( "{{exhibition.preview_left.url}}" ),
+									texture_top_{{exhibition.id}} = new THREE.TextureLoader().load( "{{exhibition.preview_top.url}}" ),
+									texture_bottom_{{exhibition.id}} = new THREE.TextureLoader().load( "{{exhibition.preview_bottom.url}}" ),
+									texture_front_{{exhibition.id}} = new THREE.TextureLoader().load( "{{exhibition.preview_front.url}}" ),
+									texture_back_{{exhibition.id}} = new THREE.TextureLoader().load( "{{exhibition.preview_front.url}}" );
+
+							var cubeMaterials_{{exhibition.id}} =
+							[
 								new THREE.MeshBasicMaterial( { map: texture_right_{{exhibition.id}}, side: THREE.BackSide } ), //right
-								new THREE.MeshBasicMaterial( { map: texture_left, side: THREE.BackSide } ), //left
-								new THREE.MeshBasicMaterial( { map: texture_top, side: THREE.BackSide } ), //top
-								new THREE.MeshBasicMaterial( { map: texture_bottom, side: THREE.BackSide } ), //bottom
-								new THREE.MeshBasicMaterial( { map: texture_front, side: THREE.BackSide } ), //front
-								new THREE.MeshBasicMaterial( { map: texture_back, side: THREE.BackSide } ) //back
-				];
-					var cube_material = new THREE.MeshFaceMaterial( cubeMaterials );
-					var cube = new THREE.Mesh( cube_geometry, cube_material );
-					scene.add( cube );
-{% endfor %}
+								new THREE.MeshBasicMaterial( { map: texture_left_{{exhibition.id}}, side: THREE.BackSide } ), //left
+								new THREE.MeshBasicMaterial( { map: texture_top_{{exhibition.id}}, side: THREE.BackSide } ), //top
+								new THREE.MeshBasicMaterial( { map: texture_bottom_{{exhibition.id}}, side: THREE.BackSide } ), //bottom
+								new THREE.MeshBasicMaterial( { map: texture_front_{{exhibition.id}}, side: THREE.BackSide } ), //front
+								new THREE.MeshBasicMaterial( { map: texture_back_{{exhibition.id}}, side: THREE.BackSide } ) //back
+							];
+					var cube_material_{{exhibition.id}} = new THREE.MeshFaceMaterial( cubeMaterials_{{exhibition.id}} );
+					var cube_{{exhibition.id}} = new THREE.Mesh( cube_geometry, cube_material_{{exhibition.id}} );
+					cube_{{exhibition.id}}.position.x = 175 * {{exhibition.id}} - 175;
+					scene.add( cube_{{exhibition.id}} );
+
+					//Text
+					var loader = new THREE.FontLoader();
+					loader.load( "{% static 'fonts/Univers_Condensed_Bold.json' %}", function ( font ) {
+						var textShape = new THREE.BufferGeometry();
+						var textMat = new THREE.MeshBasicMaterial( { color: 0x000000, side: THREE.DoubleSide } );
+						var message = "{{exhibition.title}}";
+						var shapes = font.generateShapes( message, 9 );
+						var geometry = new THREE.ShapeGeometry( shapes );
+
+						geometry.computeBoundingBox();
+						textShape.fromGeometry( geometry );
+						text = new THREE.Mesh( textShape, textMat );
+						text.position.set(0, 65, 50);
+						text.position.x = 175 * {{exhibition.id}} - 225;
+						scene.add( text );
+					} );
+
+					{% endfor %}
 					// Black cubes
 					var cube_geometry_2 = new THREE.BoxGeometry( 100.2, 100.2, 100.2 );
 					var cubeBlackMaterials =
@@ -111,22 +133,7 @@
 						scene.add( object );
 				}
 
-					//Text
-					var loader = new THREE.FontLoader();
-					loader.load( "{% static 'fonts/Univers_Condensed_Bold.json' %}", function ( font ) {
-						var textShape = new THREE.BufferGeometry();
-						var textMat = new THREE.MeshBasicMaterial( { color: 0x000000, side: THREE.DoubleSide } );
-						//var message = "Three.js\nSimple text.";
-						var message = "НАИМЕНОВАНИЕ\nВЫСТАВКИ";
-						var shapes = font.generateShapes( message, 9 );
-						var geometry = new THREE.ShapeGeometry( shapes );
 
-						geometry.computeBoundingBox();
-						textShape.fromGeometry( geometry );
-						text = new THREE.Mesh( textShape, textMat );
-						text.position.set(-50, 65, 50);
-						scene.add( text );
-					} );
 
 					//Plane hor
 					var shadowtex = new THREE.TextureLoader().load( "{% static 'img/shadowtex.jpg' %}" );
@@ -150,7 +157,8 @@
           renderer.setSize( window.innerWidth, window.innerHeight );
           renderer.shadowMap.enabled = true;
 			    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-          document.getElementById('page_content').appendChild( renderer.domElement );
+					//document.body.appendChild( renderer.domElement );
+					document.getElementById('page_content').appendChild( renderer.domElement );
 
 					// Controls
 					controls = new THREE.OrbitControls( camera, renderer.domElement );

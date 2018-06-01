@@ -4,7 +4,7 @@
 	<head>
 		<meta charset=utf-8>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="{% static 'css/exhibition.css' %}?v=0.0.10">
+		<link rel="stylesheet" href="{% static 'css/exhibition.css' %}?v=0.0.11">
 		<link rel="icon" href="{% static 'img/favicon.png' %}">
 
 		<title>{% block title %}{% endblock %}</title>
@@ -37,7 +37,9 @@
 			});
 		</script>
 		<main>
-			{% block content %}{% endblock %}
+			<div id=page_content>
+				{% block content %}{% endblock %}
+			</div>
 		</main>
 		{% include 'base/include_footer.html' %}
 	</body>
