@@ -3,14 +3,16 @@
 
 {% block title %}Блог{% endblock %}
 
+{% block pagetitle %}Блог{% endblock %}
+
 {% block content %}
 <div class="list">
-    {% for post in posts %}
+{% for post in posts %}
     <article class="post" >
       <header {% if post.preview %} style="background-image: url({{post.preview.url}})" {% endif %}><div></div></header>
       <main>
-        <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-        <p>{{ post.published_date }}</p>
+        <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+        <p>{{ post.published_date|date:"j.m.Y" }}</p>
       </main>
     </article>
 {% endfor %}

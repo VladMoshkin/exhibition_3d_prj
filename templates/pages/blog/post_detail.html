@@ -3,6 +3,11 @@
 
 {% block title %}{{ post.title }}{% endblock %}
 
+{% block pagetitle %}{{ post.title }}{% endblock %}
+
+{% block svgcolor_header %}white{% endblock %}
+{% block textcolor %}white{% endblock %}
+
 {% block content %}
 <script>
 var pagetop, yPos, post_title;
@@ -28,7 +33,7 @@ var pagetop, yPos, post_title;
 	<header id="pagetop" {% if post.background %} style="background-image: url({{post.background.url}})" {% endif %}>
     <div id="titlemargin">
       <h2 id="titletop">{{ post.title }}</h2>
-      <p>{{ post.published_date }}</p>
+      <p>{{ post.published_date|date:"j.m.Y" }}</p>
     </div>
   </header>
 	<main>

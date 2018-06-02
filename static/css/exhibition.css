@@ -45,7 +45,6 @@ body>footer{
 	position: fixed;
 	width: 100vw;
 	z-index: 999;
-	fill: black;
 }
 
 body>header{
@@ -141,11 +140,13 @@ body>header .auth{
 .single_post>header>div h2{
 	width: 30vw;
 	font-size: 48pt;
+	transition: all 0.5s ease-out 0s;
 }
 
 .single_post>header>div p{
 	width: 30vw;
-	font-size: 14pt;
+	font-family: 'Univers Condensed';
+	font-size: 12pt;
 	text-transform: uppercase;
 	margin-top: 4px;
 }
@@ -259,7 +260,7 @@ A:hover {
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;
-	max-width: 1230px;
+	max-width: 1238px;
 }
 .post{
 	min-height: 360px;
@@ -277,9 +278,11 @@ A:hover {
 }
 
 .post>main>p{
-	font-size: 14pt;
+	font-size: 12pt;
 	text-transform: uppercase;
 	margin-top: 4px;
+	font-family: 'Univers Condensed';
+	font-style: normal;
 }
 
 .post>header{

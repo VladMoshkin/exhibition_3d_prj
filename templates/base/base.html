@@ -10,6 +10,9 @@
 		<title>{% block title %}{% endblock %}</title>
 		<style>
 			.pagetitle:before{content:'{% block pagetitle %}{% endblock %}'}
+			.svgcolor_header *{fill: {% block svgcolor_header %}{% endblock %}}
+			.svgcolor_footer *{fill: {% block svgcolor_footer %}{% endblock %}}
+			.textcolor *{color: {% block textcolor %}{% endblock %}}
 		</style>
 
 	</head>

@@ -91,7 +91,7 @@
 							];
 					var cube_material_{{exhibition.id}} = new THREE.MeshFaceMaterial( cubeMaterials_{{exhibition.id}} );
 					var cube_{{exhibition.id}} = new THREE.Mesh( cube_geometry, cube_material_{{exhibition.id}} );
-					cube_{{exhibition.id}}.position.x = 175 * {{exhibition.id}} - 175;
+					cube_{{exhibition.id}}.position.x = 175 * {{forloop.counter}} - 175;
 					scene.add( cube_{{exhibition.id}} );
 
 					//Text
@@ -107,7 +107,7 @@
 						textShape.fromGeometry( geometry );
 						text = new THREE.Mesh( textShape, textMat );
 						text.position.set(0, 57, 50);
-						text.position.x = 175 * {{exhibition.id}} - 225;
+						text.position.x = 175 * {{forloop.counter}} - 225;
 						scene.add( text );
 					} );
 
@@ -129,7 +129,6 @@
 					for ( var i = 0; i < 7; i ++ ) {
 						var object = new THREE.Mesh( cube_geometry_2, cubeBlackMaterials );
 						object.position.x = 175 * i;
-
 						scene.add( object );
 				}
 

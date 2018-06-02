@@ -4,7 +4,7 @@ from django.utils import timezone
 from .models import Exhibition
 
 def exhibition_list(request):
-    exhibitions = Exhibition.objects.all()[:6]
+    exhibitions = Exhibition.objects.all().order_by('-open_date')[:6]
     #exhibition = get_object_or_404(Exhibition, slug=exhibition_slug)
     #images = Image.objects.filter(exhibition=exhibition,approved=True)
     context = {"exhibitions":exhibitions}
