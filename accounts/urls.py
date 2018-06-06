@@ -1,7 +1,8 @@
 from django.conf.urls import url
 from . import views
-from django.contrib.auth.views import login
+from django.contrib.auth.views import login, logout
 
 urlpatterns = [
-    url(r'^enter', login, {'template_name': 'pages/accounts/enter.html'})
+    url(r'^login/$', login, {'template_name': 'accounts/login.html'}),
+    url(r'^logout/$', views.logout_user, name="logout")
 ]

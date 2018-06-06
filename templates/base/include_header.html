@@ -27,7 +27,9 @@
     {% if user.is_authenticated %}
     <a class="textcolor"><h2>Профиль</h2></a>
     {% else %}
-    <a class="textcolor" href="{% url 'auth_login' %}">ВХОД / РЕГИСТРАЦИЯ</a>
+    <a class="textcolor" href="/account/login">ВХОД</a>
+    <h2>/</h2>
+    <a class="textcolor" href="/account/register">РЕГИСТРАЦИЯ</a>
     {% endif %}
   </section>
 

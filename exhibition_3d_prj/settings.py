@@ -41,12 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'registration',
+    'accounts',
     'blog',
-    'news',
     'exhibition',
     'image',
-    #'accounts',
 ]
 
 MIDDLEWARE = [
@@ -135,4 +133,4 @@ STATIC_ROOT = STAT_ROOT
 MEDIA_URL = '/media/'
 MEDIA_ROOT = MEDI_DIR
 
-LOGIN_REDIRECT_URL = '/profile/'
+LOGIN_REDIRECT_URL = '/account/'

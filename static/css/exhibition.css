@@ -99,11 +99,17 @@ body>header .menu svg{
 }
 
 body>header .auth{
+	display: flex;
+	justify-content:flex-end;
 	text-align: right;
 	text-decoration: none;
 	color: black;
 	font-weight: bold;
 	font-size: 20pt;
+}
+body>header .auth a{
+	margin-right: 8px;
+	margin-left: 8px;
 }
 
 .single_post>main{
@@ -292,4 +298,8 @@ A:hover {
 .post>header>div{
 	display: block;
 	padding-top: 100%;
+}
+
+.login_area{
+	margin: 100px;
 }

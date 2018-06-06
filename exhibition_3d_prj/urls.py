@@ -4,13 +4,13 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from exhibition import views
-from accounts import views as acc_views
+#from accounts import views as acc_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('exhibition.urls')),
     url(r'^blog/', include('blog.urls')),
-    url(r'^account/', include('registration.backends.simple.urls')),
+    url(r'^account/', include('accounts.urls')),
     url(r'^addimage/', include('image.urls')),
 ]
 
