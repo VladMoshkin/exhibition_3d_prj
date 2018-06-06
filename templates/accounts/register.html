@@ -1,0 +1,16 @@
+{% extends "base/base.html" %}
+{% load staticfiles i18n %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block pagetitle %}Регистрация{% endblock %}
+
+{% block content %}
+<div class="login_area">
+	<form method="POST">
+		{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Зарегистрироваться</button>
+	</form>
+</div>
+{% endblock %}

@@ -25,7 +25,7 @@
   </section>
   <section class="auth">
     {% if user.is_authenticated %}
-    <a class="textcolor"><h2>Профиль</h2></a>
+    <a class="textcolor"><h2>{{user}}</h2></a>
     {% else %}
     <a class="textcolor" href="/account/login">ВХОД</a>
     <h2>/</h2>
