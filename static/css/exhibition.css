@@ -107,9 +107,17 @@ body>header .auth{
 	font-weight: bold;
 	font-size: 20pt;
 }
-body>header .auth a{
-	margin-right: 8px;
+body>header .slesh{
 	margin-left: 8px;
+	margin-right: 8px;
+}
+
+body>header .auth svg{
+	margin-left: 20px;
+}
+
+body>header .auth a:hover{
+	text-decoration: underline;
 }
 
 .single_post>main{
