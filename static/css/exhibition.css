@@ -264,6 +264,10 @@ A:hover {
   text-decoration: none;
 }
 
+textarea:focus, input:focus{
+    outline: none;
+}
+
 .list{
 	display: grid;
 	grid-template-columns: repeat(3, 272px);
@@ -308,6 +312,77 @@ A:hover {
 	padding-top: 100%;
 }
 
-.login_area{
-	margin: 100px;
+.area{
+	display: flex;
+	height: 100vh;
+	align-items: center;
+	justify-content: center;
+}
+
+.login{
+	margin-top: 40px;
+	display: flex;
+	flex-direction: column;
+}
+
+.login label{
+	font-family: 'Univers';
+	font-weight: normal;
+	font-size: 18pt;
+	margin-bottom: 16px;
+}
+
+.login input{
+	font-family: 'Univers';
+	font-weight: normal;
+	font-size: 18pt;
+	height: 48px;
+	width: 480px;
+	border: 2px solid black;
+	margin-bottom: 24px;
+	padding-left: 12px;
+}
+
+.login>div{
+	display: flex;
+	flex-direction: row;
+}
+
+.login a{
+	text-decoration: underline;
+	margin-left: 4px;
+}
+
+.login a:hover{
+	text-decoration: none;
+}
+
+.column{
+	display: flex;
+	flex-direction: column;
+	margin-left: 40px;
+	margin-right: 40px;
+}
+.column>div{
+	display: flex;
+	flex-direction: row;
+}
+
+.button{
+	margin-top: 80px;
+	background-color: white;
+	font-size: 20pt;
+	border: 2px solid black;
+	width: 480px;
+	height: 80px;
+	text-transform: uppercase;
+	font-family: 'Univers Condensed';
+	font-weight: bold;
+	outline: none;
+	align-self: center;
+}
+
+.button:hover{
+	background-color: black;
+  color: white;
 }

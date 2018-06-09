@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from image.forms import AddImage
 from exhibition.models import Exhibition
 from image.models import Image
@@ -21,4 +21,5 @@ def addimage(request, pk):
                                     'title': request.POST['title'],
                                     'image': request.POST and request.FILES['image']
                                     })
+        return redirect('/')
     return render(request, 'pages/image/addimage.html', context )

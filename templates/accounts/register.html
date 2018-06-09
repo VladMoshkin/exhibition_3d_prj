@@ -6,11 +6,29 @@
 {% block pagetitle %}Регистрация{% endblock %}
 
 {% block content %}
-<div class="login_area">
+<div class="area">
 	<form method="POST">
 		{% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Зарегистрироваться</button>
+		<div class="login">
+			<div class="columns">
+				<div class="column" >
+					<label for="id_username">Имя пользователя</label>
+					<input type="text" name="username" maxlength="150" autofocus required id="id_username" />
+					<label for="id_email">Email</label>
+					<input type="email" name="email" required id="id_email" />
+					<div>
+						<p>Есть учетная запись?</p><a href="/account/login"><p>Вход</p></a>
+					</div>
+				</div>
+				<div class="column">
+					<label for="id_password1">Пароль</label>
+					<input type="password" name="password1" required id="id_password1" />
+					<label for="id_password2">Подтверждение пароля</label>
+					<input type="password" name="password2" required id="id_password2" />
+				</div>
+			</div>
+	    <button class="button" type="submit">Зарегистрироваться</button>
+		</div>
 	</form>
 </div>
 {% endblock %}

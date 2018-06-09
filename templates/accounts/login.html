@@ -6,16 +6,19 @@
 {% block pagetitle %}Вход{% endblock %}
 
 {% block content %}
-<div class="login_area">
+<div class="area">
 	<form method="POST">
 		{% csrf_token %}
-    <label for="id_username">Имя пользователя</label>
-    <input type="text" name="username" autofocus maxlength="254" required id="id_username">
-
-    <label for="id_password">Пароль</label>
-    <input type="password" name="password" required id="id_password">
-
-    <button type="submit">Войти</button>
+		<div class="login">
+	    <label for="id_username">Имя пользователя</label>
+	    <input type="text" name="username" autofocus maxlength="254" required id="id_username" />
+	    <label for="id_password">Пароль</label>
+	    <input type="password" name="password" required id="id_password" />
+			<div>
+				<p>Нет учетной записи?</p><a href="/account/register"><p>Регистрация</p></a>
+			</div>
+	    <button class="button" type="submit">Войти</button>
+		</div>
 	</form>
 </div>
 {% endblock %}
