@@ -129,19 +129,27 @@
       var floor = new THREE.Mesh( floorGeometry, floorMaterial );
       scene.add( floor );
       // objects
-      var boxGeometry = new THREE.BoxGeometry( 40, 40, 40 );
 
-      for ( var i = 0; i < 20; i ++ ) {
-        var boxMaterial = new THREE.MeshPhongMaterial( { specular: 0xffffff, flatShading: true } );
-        boxMaterial.color.setHSL( 0, 0, 1 );
-        var box = new THREE.Mesh( boxGeometry, boxMaterial );
-        box.position.x = Math.floor( Math.random() * 20 - 10 ) * 15;
-        box.position.y = 20;
-        box.position.z = Math.floor( Math.random() * 20 - 10 ) * 15;
-        box.position.z = Math.floor( Math.random() * 20 - 10 ) * 15;
-        scene.add( box );
-        objects.push( box );
-      }
+			var json_images = '{{ images|safe }}';
+			var image_objs = JSON.parse(json_images);
+			console.log(image_objs);
+
+			$.each(image_objs, function(image_id,image_obj){
+				var image_height = 30,
+				image_width = image_height*image_obj.ratio;
+				console.log(image_width);
+				var planeGeometry = new THREE.PlaneGeometry( image_width, image_height );
+				var texture = new THREE.TextureLoader().load( image_obj.url );
+				var planeMaterial = new THREE.MeshBasicMaterial( { map:texture, side: THREE.DoubleSide } );
+				var plane = new THREE.Mesh( planeGeometry, planeMaterial );
+				plane.position.x = Math.floor( Math.random() * 20 - 10 ) * 10;
+        plane.position.y = 15;
+        plane.position.z = Math.floor( Math.random() * 20 - 10) * 10;
+        plane.position.z = Math.floor( Math.random() * 20 - 10) * 10;
+        scene.add( plane );
+				objects.push( plane );
+			} );
+
       //
       renderer = new THREE.WebGLRenderer();
       renderer.setPixelRatio( window.devicePixelRatio );

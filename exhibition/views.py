@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from exhibition.models import *
 from django.utils import timezone
 from .models import Exhibition
+from PIL import Image
+import json
 
 def exhibition_list(request):
     exhibitions = Exhibition.objects.all().order_by('-open_date')[:6]
@@ -10,9 +12,29 @@ def exhibition_list(request):
     context = {"exhibitions":exhibitions}
     return render(request, 'pages/exhibition/exhibition_list.html', context)
 
+def images_to_json(images):
+    result_images = {}
+    for image in images:
+        url = image.image.url
+        width = image.image.width
+        height = image.image.height
+        ratio = width/height
+        result_images[image.id]={ 'url': url,
+                                  'height': height,
+                                  'width': width,
+                                  'ratio': ratio,
+                                  'title': image.title,
+                                  'author': image.author.username }
+    result_images = json.dumps(result_images)
+    return result_images
+
 def exhibition_detail(request, pk):
     exhibition = get_object_or_404(Exhibition, pk=pk)
-    return render(request, 'pages/exhibition/exhibition_detail.html', {'exhibition': exhibition})
+    images = exhibition.image_set.all()
+    json_images = images_to_json(images)
+    print(images)
+    context = {'exhibition': exhibition, 'images': json_images}
+    return render(request, 'pages/exhibition/exhibition_detail.html', context)
 
 def about(request):
     return render(request, 'pages/exhibition/about_us.html', {})
