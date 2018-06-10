@@ -4,16 +4,34 @@
 {% block title %}Подать работу на выставку{% endblock %}
 {% block pagetitle %}Подать работу на выставку{% endblock %}
 {% block content %}
-<div id="addimage_form"
-  <h2>Работа</h2>
+
+<script>
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+  };
+</script>
+<div class="newimage">
   {% if old_image %}
   <img src='{{old_image.image.url}}'>
   {% else %}
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Отправить</button>
-  </form>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="addimage">
+        <div class="file-upload">
+          <img id="output"/>
+          <label>
+            <input type="file" name="image" required id="id_image" accept="image/*" onchange="loadFile(event)"/>
+            <span>Выберите изображение</span>
+          </label>
+        </div>
+
+        <label for="id_title">Название</label>
+        <input type="text" name="title" required id="id_title" />
+
+        <button class="button" type="submit">Отправить</button>
+      </div>
+    </form>
   {% endif %}
 </div>
 {% endblock %}
