@@ -3,7 +3,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from image.forms import AddImage
 from exhibition.models import Exhibition
 from image.models import Image
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def addimage(request, pk):
     form = AddImage()
     exhibition = get_object_or_404(Exhibition, pk=pk)
@@ -21,5 +24,5 @@ def addimage(request, pk):
                                     'title': request.POST['title'],
                                     'image': request.POST and request.FILES['image']
                                     })
-        return redirect('/')
+        return redirect( reverse('addimage', kwargs={'pk':pk}))
     return render(request, 'pages/image/addimage.html', context )

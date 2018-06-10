@@ -50,7 +50,7 @@ body>footer{
 body>header{
 	top: 0;
 	left: 0;
-	padding: 12px 50px 0px 50px;
+	padding: 12px 50px 16px 50px;
 }
 
 body>footer{
@@ -337,6 +337,7 @@ textarea:focus, input:focus{
 	display: block;
 	padding-top: 100%;
 }
+
 
 .area{
 	display: flex;

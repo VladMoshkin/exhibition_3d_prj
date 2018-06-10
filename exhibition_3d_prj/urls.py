@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('exhibition.urls')),
     url(r'^blog/', include('blog.urls')),
-    url(r'^account/', include('accounts.urls')),
+    url(r'^accounts/', include('accounts.urls')),
     url(r'^addimage/', include('image.urls')),
 ]
 

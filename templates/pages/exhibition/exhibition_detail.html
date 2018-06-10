@@ -124,8 +124,22 @@
       // floor
       var floorGeometry = new THREE.PlaneGeometry( 2000, 2000, 100, 100 );
       floorGeometry.rotateX( - Math.PI / 2 );
-
-      var floorMaterial = new THREE.MeshBasicMaterial() ;
+			/*
+			for ( var i = 0, l = floorGeometry.vertices.length; i < l; i ++ ) {
+				var vertex = floorGeometry.vertices[ i ];
+				vertex.x += Math.random() * 20 - 10;
+				vertex.y += 1;
+				vertex.z += Math.random() * 20 - 10;
+			}
+			for ( var i = 0, l = floorGeometry.faces.length; i < l; i ++ ) {
+				var face = floorGeometry.faces[ i ];
+				face.vertexColors[ 0 ] = new THREE.Color().setHSL( Math.random() * 0.3 + 0.5, 0, Math.random() * 0.25 + 0.75 );
+				face.vertexColors[ 1 ] = new THREE.Color().setHSL( Math.random() * 0.3 + 0.5, 0, Math.random() * 0.25 + 0.75 );
+				face.vertexColors[ 2 ] = new THREE.Color().setHSL( Math.random() * 0.3 + 0.5, 0, Math.random() * 0.25 + 0.75 );
+			}
+      var floorMaterial = new THREE.MeshBasicMaterial( { vertexColors: THREE.VertexColors } );
+			*/
+			var floorMaterial = new THREE.MeshBasicMaterial();
       var floor = new THREE.Mesh( floorGeometry, floorMaterial );
       scene.add( floor );
       // objects

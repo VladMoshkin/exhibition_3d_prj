@@ -6,11 +6,16 @@ from PIL import Image
 import json
 
 def exhibition_list(request):
-    exhibitions = Exhibition.objects.all().order_by('-open_date')[:6]
+    exhibitions = Exhibition.objects.filter(open_date__lte=timezone.now()).order_by('-open_date')
     #exhibition = get_object_or_404(Exhibition, slug=exhibition_slug)
     #images = Image.objects.filter(exhibition=exhibition,approved=True)
     context = {"exhibitions":exhibitions}
     return render(request, 'pages/exhibition/exhibition_list.html', context)
+
+def exhibition_list_grid(request):
+    exhibitions = Exhibition.objects.filter(open_date__lte=timezone.now()).order_by('-open_date')
+    context = {"exhibitions":exhibitions}
+    return render(request, 'pages/exhibition/exhibition_list_grid.html', context)
 
 def images_to_json(images):
     result_images = {}
@@ -36,8 +41,10 @@ def exhibition_detail(request, pk):
     context = {'exhibition': exhibition, 'images': json_images}
     return render(request, 'pages/exhibition/exhibition_detail.html', context)
 
+def exhibition_addimage(request):
+    exhibitions = Exhibition.objects.filter(open_date__gte=timezone.now()).order_by('-open_date')
+    context = {"exhibitions":exhibitions}
+    return render(request, 'pages/exhibition/exhibitions_addimage.html', context)
+
 def about(request):
     return render(request, 'pages/exhibition/about_us.html', {})
-
-def profile(request):
-    return render(request, 'pages/exhibition/profile.html', {})

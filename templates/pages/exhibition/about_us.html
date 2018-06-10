@@ -1,9 +1,9 @@
 {% extends "base/base.html" %}
 {% load staticfiles i18n %}
 
-{% block title %}Выставки{% endblock %}
+{% block title %}о нас{% endblock %}
 
-{% block pagetitle %}Выставки{% endblock %}
+{% block pagetitle %}о нас{% endblock %}
 
 {% block content %}
 		<script src="{% static 'js/three.js' %}"></script>
@@ -42,7 +42,7 @@
           renderer.setSize( window.innerWidth, window.innerHeight );
           renderer.shadowMap.enabled = true;
 			    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-					//document.body.appendChild( renderer.domElement );
+				
 					document.getElementById('page_content').appendChild( renderer.domElement );
 
 					// Controls
@@ -72,17 +72,7 @@
       }
 
 			function render() {
-	/*		raycaster.setFromCamera( mouse, camera );
 
-				var intersects = raycaster.intersectObjects( scene.children );
-
-
-				for ( var i = 0; i < intersects.length; i++ ) {
-
-				intersects[ i ].object.material.color.set( 0xff0000 );
-
-			}
-*/
 				renderer.render( scene, camera );
 			}
 
