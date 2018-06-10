@@ -420,9 +420,9 @@ textarea:focus, input:focus{
 	flex-direction: column;
 	width: 100vw;
 	height: 100vh;
-	margin-top: 32px;
 }
 .addimage{
+	margin-top: 36px;
 	display: flex;
 	flex-direction: column;
 }
@@ -490,6 +490,11 @@ textarea:focus, input:focus{
 
 #output{
 	max-height: 240px;
+}
+
+#uploadimg{
+	max-height: 64vh;
+
 }
 
 .addimage>button{

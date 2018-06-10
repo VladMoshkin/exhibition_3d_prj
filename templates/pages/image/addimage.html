@@ -13,7 +13,10 @@
 </script>
 <div class="newimage">
   {% if old_image %}
-  <img src='{{old_image.image.url}}'>
+  <div class="card">
+
+  </div>
+  <img id="uploadimg" src='{{old_image.image.url}}'>
   {% else %}
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
