@@ -74,9 +74,6 @@
       scene = new THREE.Scene();
       scene.background = new THREE.Color( 0xffffff );
       scene.fog = new THREE.Fog( 0xffffff, 0, 750 );
-      var light = new THREE.HemisphereLight( 0xeeeeff, 0x777788, 0.75 );
-      light.position.set( 0.5, 1, 0.75 );
-      scene.add( light );
       controls = new THREE.PointerLockControls( camera );
       scene.add( controls.getObject() );
       var onKeyDown = function ( event ) {
@@ -152,14 +149,22 @@
 				var image_height = 30,
 				image_width = image_height*image_obj.ratio;
 				console.log(image_width);
-				var planeGeometry = new THREE.PlaneGeometry( image_width, image_height );
+				var planeGeometry = new THREE.BoxGeometry( image_width, image_height, 10 );
 				var texture = new THREE.TextureLoader().load( image_obj.url );
-				var planeMaterial = new THREE.MeshBasicMaterial( { map:texture, side: THREE.DoubleSide } );
+				var planeMaterial =
+				[
+					new THREE.MeshBasicMaterial( { color: 0x000000, side: THREE.FrontSide } ), //right
+					new THREE.MeshBasicMaterial( { color: 0x000000, side: THREE.FrontSide } ), //left
+					new THREE.MeshBasicMaterial( { color: 0x000000, side: THREE.FrontSide } ), //top
+					new THREE.MeshBasicMaterial( { color: 0x000000, side: THREE.FrontSide } ), //bottom
+					new THREE.MeshBasicMaterial( { map:texture, side: THREE.FrontSide } ), //front
+					new THREE.MeshBasicMaterial( { color: 0x000000, side: THREE.FrontSide } ) //back
+				];
+				var planeMaterial = new THREE.MeshFaceMaterial( planeMaterial );
 				var plane = new THREE.Mesh( planeGeometry, planeMaterial );
-				plane.position.x = Math.floor( Math.random() * 20 - 10 ) * 10;
+				plane.position.x = 0;
         plane.position.y = 15;
-        plane.position.z = Math.floor( Math.random() * 20 - 10) * 10;
-        plane.position.z = Math.floor( Math.random() * 20 - 10) * 10;
+				plane.position.z = -40;
         scene.add( plane );
 				objects.push( plane );
 			} );

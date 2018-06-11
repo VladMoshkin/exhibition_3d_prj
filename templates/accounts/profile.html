@@ -13,8 +13,8 @@
     <p>{{ user.email }}</p>
   </header>
 	<main>
-		<h2>Работы</h2>
-		<div class="list">
+		<h2 class="name">Работы</h2>
+		<div class="grid">
 		{% for exhibition in exhibitions %}
 		    <article class="post">
 		      <header {% if exhibition.preview_back %} style="background-image: url({{exhibition.preview_back.url}})" {% endif %}><div></div></header>
