@@ -4,6 +4,8 @@ from django.http import HttpResponseRedirect
 from accounts.forms import RegistrationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from exhibition.models import Exhibition
+from django.utils import timezone
 
 def logout_user(request):
     redirect_url = '/'
@@ -35,5 +37,6 @@ def register(request):
 
 @login_required
 def profile(request):
-    args = {'user': request.user}
+    exhibitions = Exhibition.objects.filter(open_date__lte=timezone.now()).order_by('-open_date')
+    args = {'user': request.user, 'exhibitions': exhibitions}
     return render(request, 'accounts/profile.html', args)

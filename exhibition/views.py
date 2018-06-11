@@ -6,7 +6,7 @@ from PIL import Image
 import json
 
 def exhibition_list(request):
-    exhibitions = Exhibition.objects.filter(open_date__lte=timezone.now()).order_by('-open_date')
+    exhibitions = Exhibition.objects.filter(open_date__lte=timezone.now()).order_by('-open_date')[:6]
     #exhibition = get_object_or_404(Exhibition, slug=exhibition_slug)
     #images = Image.objects.filter(exhibition=exhibition,approved=True)
     context = {"exhibitions":exhibitions}

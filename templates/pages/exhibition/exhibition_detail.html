@@ -1,9 +1,9 @@
 {% extends "base/base.html" %}
 {% load staticfiles i18n %}
 
-{% block title %}Выставки{% endblock %}
+{% block title %}{{exhibition.title}}{% endblock %}
 
-{% block pagetitle %}Выставки{% endblock %}
+{% block pagetitle %}{{exhibition.title}}{% endblock %}
 
 {% block content %}
 		<script src="{% static 'js/three.js' %}"></script>

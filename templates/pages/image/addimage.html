@@ -1,8 +1,8 @@
 {% extends "base/base.html" %}
 {% load staticfiles i18n %}
 
-{% block title %}Подать работу на выставку{% endblock %}
-{% block pagetitle %}Подать работу на выставку{% endblock %}
+{% block title %}{{exhibition.title}}{% endblock %}
+{% block pagetitle %}{{exhibition.title}}{% endblock %}
 {% block content %}
 
 <script>
@@ -14,7 +14,8 @@
 <div class="newimage">
   {% if old_image %}
   <div class="card">
-
+    <h2>{{old_image.title}}</h2>
+    <p>{{user.username}}</p>
   </div>
   <img id="uploadimg" src='{{old_image.image.url}}'>
   {% else %}

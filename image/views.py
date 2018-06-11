@@ -11,7 +11,7 @@ def addimage(request, pk):
     form = AddImage()
     exhibition = get_object_or_404(Exhibition, pk=pk)
     user = request.user
-    context = {'form': form}
+    context = {'form': form, 'exhibition': exhibition}
     if Image.objects.filter(author=user, exhibition=exhibition).exists():
         old_image = Image.objects.filter(author=user, exhibition=exhibition).first()
         context['old_image'] = old_image
