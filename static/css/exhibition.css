@@ -65,12 +65,13 @@ body>footer>section:last-child a{
 	align-items: center;
 }
 
-body>footer>section:last-child a{
-	margin-right: 20px;
+body>footer>section:first-child{
+	align-self: flex-end;
 }
 
-body>footer>section:last-child a:last-child{
-	margin-right: 0;
+body>footer>section:last-child a{
+	margin-left: 20px;
+	margin-top: 18px;
 }
 
 body>header>section:first-child,

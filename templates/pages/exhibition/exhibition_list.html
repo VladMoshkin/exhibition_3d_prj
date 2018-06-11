@@ -4,6 +4,7 @@
 {% block title %}Выставки{% endblock %}
 
 {% block pagetitle %}Выставки{% endblock %}
+{% block flex-direction %}{% endblock %}
 
 {% block content %}
 		<script src="{% static 'js/three.js' %}"></script>
@@ -112,6 +113,14 @@
 					} );
 
 					{% endfor %}
+					//Button
+					var button_texture = new THREE.TextureLoader().load( "{% static 'img/button.png' %}" );
+					var button_geometry = new THREE.PlaneGeometry (100, 100);
+					var button_material = new THREE.MeshBasicMaterial( { map:button_texture, side: THREE.DoubleSide } );
+					var button = new THREE.Mesh( button_geometry, button_material );
+					button.position.set(-175, 0, -52);
+					scene.add( button );
+
 					// Black cubes
 					var cube_geometry_2 = new THREE.BoxGeometry( 100.2, 100.2, 100.2 );
 					var cubeBlackMaterials =
@@ -146,8 +155,8 @@
           //Line hor
 					var geometry = new THREE.Geometry();
 					geometry.vertices.push(
-						new THREE.Vector3( -400, -40, -250 ),
-						new THREE.Vector3( 1200,-40, -250 )
+						new THREE.Vector3( -1000, -40, -250 ),
+						new THREE.Vector3( 1600,-40, -250 )
 					);
 					var line = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: 0x000000, linewidth: 2 } ) );
 					scene.add(line);
