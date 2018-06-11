@@ -144,8 +144,10 @@
 			var json_images = '{{ images|safe }}';
 			var image_objs = JSON.parse(json_images);
 			console.log(image_objs);
-
+			var step = 1;
+			var depstep = 1;
 			$.each(image_objs, function(image_id,image_obj){
+
 				var image_height = 30,
 				image_width = image_height*image_obj.ratio;
 				console.log(image_width);
@@ -162,11 +164,17 @@
 				];
 				var planeMaterial = new THREE.MeshFaceMaterial( planeMaterial );
 				var plane = new THREE.Mesh( planeGeometry, planeMaterial );
-				plane.position.x = 0;
+				if ( step & 1 ) {
+    			plane.position.x = -50;
+					depstep++;
+				} else {
+    			plane.position.x = 50;
+				}
         plane.position.y = 15;
-				plane.position.z = -40;
+				plane.position.z = -40 * depstep;
         scene.add( plane );
 				objects.push( plane );
+				step++;
 			} );
 
       //

@@ -11,12 +11,13 @@
 <div class="list">
 {% for exhibition in exhibitions %}
     <article class="post">
-      <div class="cube"></div>
+      <header {% if exhibition.preview_back %} style="background-image: url({{exhibition.preview_back.url}})" {% endif %}><div></div></header>
       <main>
         <h2><a href="{% url 'exhibition_detail' exhibition.pk %}">{{ exhibition.title }}</a></h2>
-        <p>{{ exhibition.open_date|date:"j.m.Y" }}</p>
+        <p>Открытие: {{ exhibition.open_date|date:"j.m.Y" }}</p>
       </main>
     </article>
+
 {% endfor %}
 </div>
 {% endblock %}
