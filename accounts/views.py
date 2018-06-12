@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from exhibition.models import Exhibition
 from django.utils import timezone
+from image.models import Image
 
 def logout_user(request):
     redirect_url = '/'
@@ -38,5 +39,6 @@ def register(request):
 @login_required
 def profile(request):
     exhibitions = Exhibition.objects.filter(open_date__lte=timezone.now()).order_by('-open_date')
-    args = {'user': request.user, 'exhibitions': exhibitions}
+    image = Image.objects.filter(author = request.user)
+    args = {'user': request.user, 'exhibitions': exhibitions, 'image': image}
     return render(request, 'accounts/profile.html', args)

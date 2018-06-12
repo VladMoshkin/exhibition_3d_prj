@@ -2,8 +2,9 @@
 {% load staticfiles i18n %}
 
 {% block title %}Профиль{% endblock %}
-
 {% block pagetitle %}Профиль{% endblock %}
+
+{% block top_background %}white{% endblock %}
 
 {% block content %}
 <profile class="profile">
@@ -17,10 +18,10 @@
 		<div class="grid">
 		{% for exhibition in exhibitions %}
 		    <article class="post">
-		      <header {% if exhibition.preview_back %} style="background-image: url({{exhibition.preview_back.url}})" {% endif %}><div></div></header>
+		      <header style="background-image: url({{image.image.url}})"><div></div></header>
 		      <main>
-		        <h2><a href="{% url 'exhibition_detail' exhibition.pk %}">{{ exhibition.title }}</a></h2>
-		        <p>{{ exhibition.open_date|date:"j.m.Y" }}</p>
+		        <h2><a href="!#">{{ image.title }}</a></h2>
+		        <p>{{ image.created_date|date:"j.m.Y" }}</p>
 		      </main>
 		    </article>
 		{% endfor %}

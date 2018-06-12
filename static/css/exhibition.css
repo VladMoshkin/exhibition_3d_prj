@@ -31,6 +31,10 @@ body{
 	flex-direction: column;
 	min-height: 100vh;
 	font-family: 'Univers Condensed';
+	cursor: url(/static/img/cursor_default.svg) 21 21, default;
+}
+
+
 }
 
 body>main{
@@ -228,9 +232,7 @@ body>header .auth a:hover{
 #sidebar li:last-child{
 	margin-bottom: 0px;
 }
-#menu-btn{
-		cursor: pointer;
-}
+
 
 #addimage_form{
 	margin: 200px;
@@ -286,7 +288,9 @@ ul{
 A {
 	text-decoration: none;
 	color: black;
+	cursor: url(/static/img/cursor_pointer.svg) 21 21, pointer;
 }
+
 A:hover {
   text-decoration: none;
 }
@@ -509,7 +513,8 @@ textarea:focus, input:focus{
 
 #uploadimg{
 	max-height: 64vh;
-
+	margin-top: 18px;
+	margin-bottom: 12px
 }
 
 .addimage>button{

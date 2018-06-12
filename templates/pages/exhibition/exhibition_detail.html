@@ -21,13 +21,15 @@
 		<script>
     var camera, scene, renderer, controls;
     var objects = [];
-    var raycaster;
+		var raycaster = new THREE.Raycaster();
+		var mouse = new THREE.Vector2();
+
     var blocker = document.getElementById( 'blocker' );
     var instructions = document.getElementById( 'instructions' );
 
     var havePointerLock = 'pointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
     if ( havePointerLock ) {
-      var element = document.body;
+      var element = document.getElementById('page_content'); //document.body
       var pointerlockchange = function ( event ) {
         if ( document.pointerLockElement === element || document.mozPointerLockElement === element || document.webkitPointerLockElement === element ) {
           controlsEnabled = true;
@@ -58,20 +60,25 @@
     } else {
       instructions.innerHTML = 'Ваш браузер не поддерживает блокировку указателя';
     }
+
+
     init();
     animate();
-    var controlsEnabled = false;
+    var controlsEnabled = true;
     var moveForward = false;
     var moveBackward = false;
     var moveLeft = false;
     var moveRight = false;
-    var canJump = false;
+    //var canJump = false;
     var prevTime = performance.now();
     var velocity = new THREE.Vector3();
     var direction = new THREE.Vector3();
+		var mouse = new THREE.Vector2(), INTERSECTED;
+
     function init() {
       camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000 );
       scene = new THREE.Scene();
+
       scene.background = new THREE.Color( 0xffffff );
       scene.fog = new THREE.Fog( 0xffffff, 0, 750 );
       controls = new THREE.PointerLockControls( camera );
@@ -117,33 +124,18 @@
       };
       document.addEventListener( 'keydown', onKeyDown, false );
       document.addEventListener( 'keyup', onKeyUp, false );
-      raycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ), 0, 10 );
+
       // floor
       var floorGeometry = new THREE.PlaneGeometry( 2000, 2000, 100, 100 );
       floorGeometry.rotateX( - Math.PI / 2 );
-			/*
-			for ( var i = 0, l = floorGeometry.vertices.length; i < l; i ++ ) {
-				var vertex = floorGeometry.vertices[ i ];
-				vertex.x += Math.random() * 20 - 10;
-				vertex.y += 1;
-				vertex.z += Math.random() * 20 - 10;
-			}
-			for ( var i = 0, l = floorGeometry.faces.length; i < l; i ++ ) {
-				var face = floorGeometry.faces[ i ];
-				face.vertexColors[ 0 ] = new THREE.Color().setHSL( Math.random() * 0.3 + 0.5, 0, Math.random() * 0.25 + 0.75 );
-				face.vertexColors[ 1 ] = new THREE.Color().setHSL( Math.random() * 0.3 + 0.5, 0, Math.random() * 0.25 + 0.75 );
-				face.vertexColors[ 2 ] = new THREE.Color().setHSL( Math.random() * 0.3 + 0.5, 0, Math.random() * 0.25 + 0.75 );
-			}
-      var floorMaterial = new THREE.MeshBasicMaterial( { vertexColors: THREE.VertexColors } );
-			*/
+
 			var floorMaterial = new THREE.MeshBasicMaterial();
       var floor = new THREE.Mesh( floorGeometry, floorMaterial );
       scene.add( floor );
-      // objects
 
+      // objects
 			var json_images = '{{ images|safe }}';
 			var image_objs = JSON.parse(json_images);
-			console.log(image_objs);
 			var step = 1;
 			var depstep = 1;
 			$.each(image_objs, function(image_id,image_obj){
@@ -177,26 +169,35 @@
 				step++;
 			} );
 
-      //
+			//
       renderer = new THREE.WebGLRenderer();
       renderer.setPixelRatio( window.devicePixelRatio );
       renderer.setSize( window.innerWidth, window.innerHeight );
+			//document.body.appendChild( renderer.domElement )
       document.getElementById('page_content').appendChild( renderer.domElement );
       //
       window.addEventListener( 'resize', onWindowResize, false );
+			window.addEventListener( 'mousemove', onMouseMove, false );
+
+
     }
     function onWindowResize() {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize( window.innerWidth, window.innerHeight );
     }
+
+		function onMouseMove( event ) {
+	// calculate mouse position in normalized device coordinates
+	// (-1 to +1) for both components
+			event.preventDefault();
+			mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+			mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+		}
+
     function animate() {
       requestAnimationFrame( animate );
       if ( controlsEnabled === true ) {
-        raycaster.ray.origin.copy( controls.getObject().position );
-        raycaster.ray.origin.y -= 10;
-        var intersections = raycaster.intersectObjects( objects );
-        var onObject = intersections.length > 0;
         var time = performance.now();
         var delta = ( time - prevTime ) / 1000;
         velocity.x -= velocity.x * 10.0 * delta;
@@ -207,22 +208,33 @@
         direction.normalize();
         if ( moveForward || moveBackward ) velocity.z -= direction.z * 400.0 * delta;
         if ( moveLeft || moveRight ) velocity.x -= direction.x * 400.0 * delta;
-        if ( onObject === true ) {
-          velocity.y = Math.max( 0, velocity.y );
-          canJump = true;
-        }
+
         controls.getObject().translateX( velocity.x * delta );
         controls.getObject().translateY( velocity.y * delta );
         controls.getObject().translateZ( velocity.z * delta );
+
         if ( controls.getObject().position.y < 10 ) {
           velocity.y = 0;
           controls.getObject().position.y = 10;
-          canJump = true;
         }
         prevTime = time;
       }
-      renderer.render( scene, camera );
+      render();
     }
+		function render() {
+			raycaster.setFromCamera( mouse, camera );
+			var intersects = raycaster.intersectObjects( objects );
+
+			if ( intersects.length > 0 ) {
+					if ( INTERSECTED != intersects[ 0 ].object ) {
+					console.log("привет");
+				} else {
+
+					INTERSECTED = null;
+				}
+			}
+			renderer.render( scene, camera );
+		}
 
 		</script>
 {% endblock %}

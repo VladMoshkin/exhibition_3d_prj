@@ -18,6 +18,7 @@
     <p>{{user.username}}</p>
   </div>
   <img id="uploadimg" src='{{old_image.image.url}}'>
+  <h2>Загруженная вами работа</h2>
   {% else %}
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
