@@ -8,13 +8,21 @@
 {% block flex-direction %}column-reverse{% endblock %}
 
 {% block content %}
+<div id="listview">
+  <a href="{% url 'exhibition_list' %}">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="10" height="24" transform="translate(14)" fill="black"/>
+      <rect width="10" height="24" fill="black"/>
+    </svg>
+  </a>
+</div>
 <div class="list">
 {% for exhibition in exhibitions %}
     <article class="post">
       <header {% if exhibition.preview_back %} style="background-image: url({{exhibition.preview_back.url}})" {% endif %}><div></div></header>
       <main>
         <h2><a href="{% url 'exhibition_detail' exhibition.pk %}">{{ exhibition.title }}</a></h2>
-        <p>Открытие: {{ exhibition.open_date|date:"j.m.Y" }}</p>
+        <p>{{ exhibition.open_date|date:"j.m.Y" }}</p>
       </main>
     </article>
 

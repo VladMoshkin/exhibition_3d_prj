@@ -233,6 +233,35 @@ body>header .auth a:hover{
 	margin-bottom: 0px;
 }
 
+#typeview{
+	display: block;
+	position: fixed;
+	bottom: 10vh;
+	left: 50vw;
+	fill: black;
+	opacity: 0.5;
+	margin: 0;
+	transition: opacity 0.5s ease-out 0s;
+}
+
+#typeview:hover {
+	opacity: 1;
+}
+
+#listview{
+	display: block;
+	position: fixed;
+	top: 119px;
+	right: 36px;
+	fill: black;
+	opacity: 0.5;
+	margin: 0;
+	transition: opacity 0.5s ease-out 0s;
+}
+
+#listview:hover {
+	opacity: 1;
+}
 
 #addimage_form{
 	margin: 200px;
@@ -261,7 +290,7 @@ body>header .auth a:hover{
 	box-align: center;
 	color: black;
 	text-align: center;
-	cursor: pointer;
+	cursor: url(/static/img/cursor_default.svg) 21 21, default;
 }
 
 h1 {
@@ -305,7 +334,7 @@ textarea:focus, input:focus{
 	grid-row-gap: 100px;
 	justify-content: space-between;
 	margin-top: 200px;
-	margin-bottom: 100px;
+	margin-bottom: 104px;
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;

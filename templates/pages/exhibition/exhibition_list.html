@@ -10,6 +10,17 @@
 		<script src="{% static 'js/three.js' %}"></script>
 		<script src="{% static 'js/OrbitControls.js' %}"></script>
 
+		<div id="typeview">
+			<a href="{% url 'exhibition_list_grid' %}">
+				<svg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg">
+					<rect width="13.8103" height="13.8054" transform="translate(19.334)"/>
+					<rect width="13.8103" height="13.8054" transform="translate(19.334 19.3276)"/>
+					<rect width="13.8103" height="13.8054" transform="translate(0 19.3276)"/>
+					<rect width="13.8103" height="13.8054"/>
+				</svg>
+			</a>
+		</div>
+
 		<script>
 
             var camera, scene, renderer;
@@ -116,7 +127,7 @@
 					//Button
 					var button_texture = new THREE.TextureLoader().load( "{% static 'img/button.png' %}" );
 					var button_geometry = new THREE.PlaneGeometry (100, 100);
-					var button_material = new THREE.MeshBasicMaterial( { map:button_texture, side: THREE.DoubleSide } );
+					var button_material = new THREE.MeshBasicMaterial( { map:button_texture, transparent: true } );
 					var button = new THREE.Mesh( button_geometry, button_material );
 					button.position.set(-175, 0, -52);
 					scene.add( button );
