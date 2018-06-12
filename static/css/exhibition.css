@@ -134,10 +134,10 @@ body>header .auth a:hover{
 
 .single_post>main p{
 	font-family: 'Univers';
-	font-size: 18pt;
+	font-size: 16pt;
 }
 
-.single_post>header{
+.single_post>header>.img{
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
@@ -151,15 +151,18 @@ body>header .auth a:hover{
 	width: 100vw;
 }
 
-.single_post>header div{
-	margin-bottom: -120px;
-	padding-left: 105px;
-}
 
 .single_post>header>div h2{
 	width: 30vw;
 	font-size: 48pt;
 	transition: all 0.5s ease-out 0s;
+}
+
+#titlemargin{
+	margin-top: 50vh;
+	position: fixed;
+	top: 0;
+	left: 100px;
 }
 
 .single_post>header>div p{
@@ -550,25 +553,25 @@ textarea:focus, input:focus{
 	margin-top: 30px;
 }
 
-.card{
-	display: block;
+#cardInfo{
+	display: none;
+	z-index: 200000;
 	position: fixed;
 	bottom: 80px;
 	right: 50px;
 	border: solid 2px black;
-	z-index: 99;
-	background-color: white;
+	background-color: black;
 	width: 280px;
 	min-height: 130px;
 }
 
-.card>h2{
+#cardInfo>h2{
 	margin-left: 16px;
 	margin-top: 16px;
 	max-width: 248px;
 }
 
-.card>p{
+#cardInfo>p{
 	margin-left: 16px;
 	margin-bottom: 16px;
 	margin-top: 16px;

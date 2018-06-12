@@ -5,8 +5,9 @@
 
 {% block pagetitle %}{{ post.title }}{% endblock %}
 
-{% block svgcolor_header %}white{% endblock %}
-{% block textcolor %}white{% endblock %}
+{% block svgcolor_header %}black{% endblock %}
+{% block textcolor %}black{% endblock %}
+{% block flex-direction %}column-reverse{% endblock %}
 
 {% block content %}
 <script>
@@ -19,19 +20,19 @@ var pagetop, yPos, post_title;
     if(yPos > 150){
       pagetop.style.height = "120px";
       titletop.style.fontSize = "24pt";
-      titlemargin.style.marginBottom = "-100px";
+      titlemargin.style.marginTop = "200px";
     } else {
       pagetop.style.height = "50vh";
       titletop.style.fontSize = "48pt";
-      titlemargin.style.marginBottom = "-140px";
+      titlemargin.style.marginTop = "800px";
     }
   }
   window.addEventListener("scroll", yScroll);
 </script>
 
 <article class="single_post">
-	<header id="pagetop">
-    <div><img src="{{post.background.url}}"/></div>
+	<header>
+    <div class="img" id="pagetop" style="background-image: url({{post.background.url}})"/></div>
     <div id="titlemargin">
       <h2 id="titletop">{{ post.title }}</h2>
       <p>{{ post.published_date|date:"j.m.Y" }}</p>

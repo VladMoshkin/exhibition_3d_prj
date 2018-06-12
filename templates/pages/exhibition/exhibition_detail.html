@@ -26,7 +26,7 @@
 
     var blocker = document.getElementById( 'blocker' );
     var instructions = document.getElementById( 'instructions' );
-
+		var card = document.getElementById( 'cardInfo' );
     var havePointerLock = 'pointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
     if ( havePointerLock ) {
       var element = document.getElementById('page_content'); //document.body
@@ -35,10 +35,12 @@
           controlsEnabled = true;
           controls.enabled = true;
           blocker.style.display = 'none';
+					card.style.display = 'block';
         } else {
           controls.enabled = false;
           blocker.style.display = 'block';
           instructions.style.display = '';
+					card.style.display = 'none';
         }
       };
       var pointerlockerror = function ( event ) {
@@ -60,7 +62,8 @@
     } else {
       instructions.innerHTML = 'Ваш браузер не поддерживает блокировку указателя';
     }
-
+		var json_images = '{{ images|safe }}';
+		var image_objs = JSON.parse(json_images);
 
     init();
     animate();
@@ -74,6 +77,7 @@
     var velocity = new THREE.Vector3();
     var direction = new THREE.Vector3();
 		var mouse = new THREE.Vector2(), INTERSECTED;
+
 
     function init() {
       camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000 );
@@ -134,15 +138,13 @@
       scene.add( floor );
 
       // objects
-			var json_images = '{{ images|safe }}';
-			var image_objs = JSON.parse(json_images);
+
 			var step = 1;
 			var depstep = 1;
 			$.each(image_objs, function(image_id,image_obj){
 
 				var image_height = 30,
 				image_width = image_height*image_obj.ratio;
-				console.log(image_width);
 				var planeGeometry = new THREE.BoxGeometry( image_width, image_height, 10 );
 				var texture = new THREE.TextureLoader().load( image_obj.url );
 				var planeMaterial =
@@ -165,6 +167,7 @@
         plane.position.y = 15;
 				plane.position.z = -40 * depstep;
         scene.add( plane );
+				plane.name = image_id;
 				objects.push( plane );
 				step++;
 			} );
@@ -227,9 +230,10 @@
 
 			if ( intersects.length > 0 ) {
 					if ( INTERSECTED != intersects[ 0 ].object ) {
-					console.log("привет");
-				} else {
+						INTERSECTED = intersects[ 0 ].object;
+						console.log(image_objs[INTERSECTED.name]);
 
+				} else {
 					INTERSECTED = null;
 				}
 			}
