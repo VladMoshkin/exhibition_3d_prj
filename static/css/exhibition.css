@@ -193,11 +193,11 @@ body>header .auth a:hover{
 	align-items: center;
 }
 
-.profile>header div{
+.profile>header>div{
 	width: 272px;
 	height: 272px;
-	background-color: black;
 	margin-bottom: 12px;
+	background-image: url(../img/profile_img.svg);
 }
 
 .profile>header h2{
@@ -582,6 +582,23 @@ textarea:focus, input:focus{
 	margin-bottom: 16px;
 	margin-top: 16px;
 	max-width: 248px;
+}
+
+#instructions{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#instructions>h3{
+	font-size: 72pt;
+	margin-bottom: 20px;
+}
+
+#instructions>p{
+	font-size: 16pt;
+	margin-bottom: 40px;
 }
 
 .cube {
