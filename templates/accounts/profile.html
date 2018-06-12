@@ -14,9 +14,9 @@
     <p>{{ user.email }}</p>
   </header>
 	<main>
-		<h2 class="name">Работы</h2>
+		<h2 class="name">Мои работы</h2>
 		<div class="grid">
-		{% for exhibition in exhibitions %}
+		{% for image in images %}
 		    <article class="post">
 		      <header style="background-image: url({{image.image.url}})"><div></div></header>
 		      <main>

@@ -39,6 +39,6 @@ def register(request):
 @login_required
 def profile(request):
     exhibitions = Exhibition.objects.filter(open_date__lte=timezone.now()).order_by('-open_date')
-    image = Image.objects.filter(author = request.user)
-    args = {'user': request.user, 'exhibitions': exhibitions, 'image': image}
+    images = Image.objects.filter(author = request.user)
+    args = {'user': request.user, 'exhibitions': exhibitions, 'images': images}
     return render(request, 'accounts/profile.html', args)
