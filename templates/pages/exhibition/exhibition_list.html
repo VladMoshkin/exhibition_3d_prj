@@ -129,7 +129,7 @@
 
 					{% endfor %}
 					scene.add(blackcubes);
-					//Button
+					/*Button
 					var button_texture = new THREE.TextureLoader().load( "{% static 'img/button.png' %}" );
 					var button_geometry = new THREE.PlaneGeometry (100, 100);
 					var button_material = new THREE.MeshBasicMaterial( { map:button_texture, transparent: true } );
@@ -137,7 +137,7 @@
 					button.position.set(-175, 0, -52);
 					buttons.add(button);
 					scene.add(buttons);
-
+					*/
 					// Black cubes
 					var cube_geometry_2 = new THREE.BoxGeometry( 100.2, 100.2, 100.2 );
 					var cubeBlackMaterials =
@@ -156,7 +156,7 @@
 						var black = new THREE.Mesh( cube_geometry_2, cubeBlackMaterials );
 						black.position.x = 175 * i;
 						scene.add(black);
-            };
+          };
 
 					//Plane hor
 					var shadowtex = new THREE.TextureLoader().load( "{% static 'img/shadowtex.jpg' %}" );
@@ -211,18 +211,13 @@
     		var intersects = raycaster.intersectObjects( blackcubes.children );
     		if (intersects.length > 0) {
 				window.open(intersects[0].object.userData.URL);
-			};
-				var intersects2 = raycaster.intersectObjects( buttons.children );
-				if (intersects.length > 0) {
-        window.open("/exhibitions/addimage");
-    	};
+				};
 			};
 
       function animation( ){
         requestAnimationFrame( animation );
 				controls.update()
 				render();
-
       }
 
 			function render() {
