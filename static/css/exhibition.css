@@ -307,6 +307,16 @@ body>header .auth a:hover{
 	cursor: url(/static/img/cursor_default.svg) 21 21, default;
 }
 
+#enter{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 120px;
+	height: 120px;
+	border: 2px solid black;
+	margin-bottom: 30px;
+}
+
 h1 {
 	font-weight: bold;
 	font-size: 20pt;
