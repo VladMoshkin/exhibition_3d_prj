@@ -127,7 +127,7 @@ body>header .auth a:hover{
 
 .single_post>main{
 	min-height: 200vh;
-	padding-top: 80vh;
+	padding-top: 90vh;
 	padding-left: 25vw;
 	padding-right: 15vw;
 }
@@ -137,32 +137,41 @@ body>header .auth a:hover{
 	font-size: 16pt;
 }
 
-.single_post>header>.img{
+.img{
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
 	background-position: top;
 	background-size: cover;
 	height: 50vh;
-	transition: all 0.5s ease-out 0s;
+	transition: all 0.4s ease-out 0s;
 	position: fixed;
 	top: 0;
 	left:0;
 	width: 100vw;
 }
 
-
-.single_post>header>div h2{
-	width: 30vw;
+#com_name{
 	font-size: 48pt;
-	transition: all 0.5s ease-out 0s;
+
+}
+
+#titletop{
+	width: 54vw;
+	transition: all 0.4s ease-out 0s;
+	font-size: 48pt;
 }
 
 #titlemargin{
-	margin-top: 50vh;
 	position: fixed;
-	top: 0;
-	left: 100px;
+	top: 60vh;
+	left: 50px;
+	transition: all 0.5s ease-out 0s;
+}
+
+#vacantion{
+	margin-left: 100px;
+	margin-top: 160px;
 }
 
 .single_post>header>div p{
@@ -500,8 +509,6 @@ textarea:focus, input:focus{
 	display: none;
 }
 
-/* задаем стили кнопки выбора файла*/
-
 .file-upload {
 	position: relative;
 	overflow: hidden;
@@ -519,7 +526,6 @@ textarea:focus, input:focus{
   color: black;
 }
 
-/* Растягиваем label на всю область блока .file-upload */
 .file-upload label {
 	display: flex;
 	align-items: center;
@@ -576,4 +582,39 @@ textarea:focus, input:focus{
 	margin-bottom: 16px;
 	margin-top: 16px;
 	max-width: 248px;
+}
+
+.cube {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  perspective: 1000px;
+  perspective-origin: center -5em;
+	flex-direction: column;
+}
+
+.side,
+.container {
+  width: 10em;
+  height: 10em;
+}
+
+.container {
+  border: 2px dotted silver;
+  transform-style: preserve-3d;
+}
+
+.side {
+  position: absolute;
+  width: 10em;
+  height: 10em;
+  border: 1px solid orange;
+  opacity: .7;
+}
+
+.back {
+  transform: translateZ(-5em);
+  background: orange;
 }

@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^exhibitions/(?P<pk>\d+)/$', views.exhibition_detail, name='exhibition_detail'),
     url(r'^exhibitions/(?P<pk>\d+)/addimage/$', addimage, name='addimage'),
     url(r'^about/$', views.about, name='about'),
+    url(r'^vacantion/$', views.vacantion, name='vacantion'),
 ]

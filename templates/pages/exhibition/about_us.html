@@ -6,75 +6,15 @@
 {% block pagetitle %}о нас{% endblock %}
 
 {% block content %}
-		<script src="{% static 'js/three.js' %}"></script>
-		<script src="{% static 'js/OrbitControls.js' %}"></script>
-
-		<script>
-
-            var camera, scene, renderer;
-            var cube_texture, loader;
-						var mouse = new THREE.Vector2();
-
-						init( );
-            animation( );
-
-
-            function init( ){
-                camera = new THREE.PerspectiveCamera( 60, window.innerWidth/window.innerHeight, 0.01, 1000 );
-                camera.position.set( 0, 0, 625 );
-			    			camera.setFocalLength ( 40 );
-                scene = new THREE.Scene();
-                scene.background = new THREE.Color(0x00ff00);
-
-								var texture = new THREE.TextureLoader().load( '{% static "img/testimg.png" %}' );
-
-								// immediately use the texture for material creation
-								var material = new THREE.MeshBasicMaterial( { map: texture } );
-								material.transparent = true;
-								var geometry = new THREE.PlaneGeometry( 150, 150, 150 );
-
-								var cube = new THREE.Mesh( geometry, material );
-								scene.add( cube );
-
-
-
-          renderer = new THREE.WebGLRenderer({ antialias: true });
-          renderer.setSize( window.innerWidth, window.innerHeight );
-          renderer.shadowMap.enabled = true;
-			    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-				
-					document.getElementById('page_content').appendChild( renderer.domElement );
-
-					// Controls
-					controls = new THREE.OrbitControls( camera, renderer.domElement );
-
-					document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-					window.addEventListener( 'resize', onWindowResize, false );
-      }
-
-			function onWindowResize() {
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
-				renderer.setSize( window.innerWidth, window.innerHeight );
-			}
-
-			function onDocumentMouseMove( event ) {
-				event.preventDefault();
-				mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-				mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-			}
-
-      function animation( ){
-        requestAnimationFrame( animation );
-				controls.update()
-				render();
-
-      }
-
-			function render() {
-
-				renderer.render( scene, camera );
-			}
-
-		</script>
+		<div class="cube">
+			<h2 id="com_name">МЫ</h2>
+			<div class="container">
+		    <div class="back side"></div>
+		    <div class="left side"></div>
+		    <div class="right side"></div>
+		    <div class="top side"></div>
+		    <div class="bottom side"></div>
+		    <div class="front side"></div>
+			</div>
+		</div>
 {% endblock %}

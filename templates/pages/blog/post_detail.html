@@ -3,7 +3,7 @@
 
 {% block title %}{{ post.title }}{% endblock %}
 
-{% block pagetitle %}{{ post.title }}{% endblock %}
+{% block pagetitle %}Статья{% endblock %}
 
 {% block svgcolor_header %}black{% endblock %}
 {% block textcolor %}black{% endblock %}
@@ -17,14 +17,16 @@ var pagetop, yPos, post_title;
     titletop = document.getElementById('titletop');
     titlemargin = document.getElementById('titlemargin');
     yPos = window.pageYOffset;
-    if(yPos > 150){
+    if(yPos > 120){
       pagetop.style.height = "120px";
-      titletop.style.fontSize = "24pt";
-      titlemargin.style.marginTop = "200px";
+      titletop.style.fontSize = "20pt";
+      titletop.style.width = "300px";
+      titlemargin.style.top = "180px";
     } else {
       pagetop.style.height = "50vh";
       titletop.style.fontSize = "48pt";
-      titlemargin.style.marginTop = "800px";
+      titletop.style.width= "54vw";
+      titlemargin.style.top = "60vh";
     }
   }
   window.addEventListener("scroll", yScroll);

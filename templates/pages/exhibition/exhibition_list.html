@@ -28,6 +28,7 @@
 						var mouse = new THREE.Vector2();
 						var raycaster = new THREE.Raycaster(),INTERSECTED;
 						var blackcubes = new THREE.Object3D();
+						var buttons = new THREE.Object3D();
 
 						init( );
             animation( );
@@ -133,9 +134,10 @@
 					var button_texture = new THREE.TextureLoader().load( "{% static 'img/button.png' %}" );
 					var button_geometry = new THREE.PlaneGeometry (100, 100);
 					var button_material = new THREE.MeshBasicMaterial( { map:button_texture, transparent: true } );
-					var button = new THREE.Mesh( button_geometry, button_material );
+					button = new THREE.Mesh( button_geometry, button_material );
 					button.position.set(-175, 0, -52);
-					scene.add( button );
+					buttons.add(button);
+					scene.add(buttons);
 
 					// Black cubes
 					var cube_geometry_2 = new THREE.BoxGeometry( 100.2, 100.2, 100.2 );
@@ -209,8 +211,12 @@
     		raycaster.setFromCamera(mouse, camera);
     		var intersects = raycaster.intersectObjects( blackcubes.children );
     		if (intersects.length > 0) {
-        window.open(intersects[0].object.userData.URL);
-    		}
+				window.open(intersects[0].object.userData.URL);
+			};
+				var intersects2 = raycaster.intersectObjects( buttons.children );
+				if (intersects.length > 0) {
+        window.open("/exhibitions/addimage");
+    	};
 			};
 
       function animation( ){

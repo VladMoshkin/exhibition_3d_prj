@@ -48,3 +48,6 @@ def exhibition_addimage(request):
 
 def about(request):
     return render(request, 'pages/exhibition/about_us.html', {})
+
+def vacantion(request):
+    return render(request, 'pages/exhibition/vacantion.html', {})
