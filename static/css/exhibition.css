@@ -572,13 +572,13 @@ textarea:focus, input:focus{
 }
 
 #cardInfo{
-	display: none;
+	display: fixed;
 	z-index: 200000;
 	position: fixed;
 	bottom: 80px;
 	right: 50px;
 	border: solid 2px black;
-	background-color: black;
+	background-color: white;
 	width: 280px;
 	min-height: 130px;
 }
